@@ -12,6 +12,7 @@ After looking at an overview of the design decisions and benefits that these “
 
 To prove our point we will finally demo SBOM generation, build reproducibility to the single byte and remote builds on a large CMake codebase.
 
+## Talk outline
 1. Definition of Safety in software builds and distribution
 2. Introduction and overview of the impact of the build systems and tooling on languages considered safe 
 	* The Rust language that is currently taking significant traction came incidentally also with a new build and packaging ecosystem. For the C++ community to reach even better safety, it should invest heavily in its tooling.
