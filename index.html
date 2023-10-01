@@ -68,6 +68,43 @@
 						</p>
 					</section>
 				</section>
+				<section>
+					<section data-auto-animate>
+						<h1>Caching</h1>
+						<h3>How many targets can a build system avoid rebuilding?</h3>
+					</section>
+					<section data-auto-animate>
+						<h1>Caching</h1>
+						<h3>Level 1 - Gradle</h3>
+						<p>
+							Once again the low level of granularity means that even small changes will rebuild very large targets
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Caching</h1>
+						<h3>Level 2 - Make, Ninja</h3>
+						<p>
+							Check timestamps on the individual input files and rebuild targets if any change. Caching is completely 
+							file-system based and uses the mtime of a file to detect if it has changed since the last build
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Caching</h1>
+						<h3>Level 2 - FASTBuild</h3>
+						<p>
+							Supports the same type of file-system caching as the previous level and adds support for distributed 
+							caching
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Caching</h1>
+						<h3>Level 3 - Bazel</h3>
+						<p>
+							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
+							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
+						</p>
+					</section>
+				</section>
 			</div>
 		</div>
 
