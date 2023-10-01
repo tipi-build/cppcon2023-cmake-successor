@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>CMake Successor Build Systems: A World Tour of Build Systems Towards Better C++ Builds</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -17,7 +17,57 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-background="dist/assets/first-slide.png"></section>
-				<section>Slide 2</section>
+				<section>Defining safety in software</section>
+				<section>Comparing build-systems</section>
+				<section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>How many indipendent targets can a build system run concurrently at most?</h3>
+					</section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>Level 1 - Gradle</h3>
+						<pre>
+.
+├── app
+│   ...
+│   └── build.gradle
+├── lib
+│   ...
+│   └── build.gradle
+└── settings.gradle
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>Level 1 - Gradle</h3>
+						<p>
+							Sub-project level parallelism. It is very limited as projects have very low granularity
+							and are limited in numbers. It is disabled by default
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>Level 2 - Make, FASTBuild</h3>
+						<p>
+							Targets are more granular and the size of the job pool can be specified by a flag (-j/--jobs)
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>Level 3 - Bazel</h3>
+						<p>
+							Same as the level before, but resource-intensive targets can reduce the level of parallelism on-demand 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h1>Parallelism</h1>
+						<h3>Level 4 - Ninja</h3>
+						<p>
+							You can define separate job-pools each of which with a different size (eg: link=1 and cc=16)
+						</p>
+					</section>
+				</section>
 			</div>
 		</div>
 
