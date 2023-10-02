@@ -123,7 +123,7 @@
 						<h3>Level 2 - Meson</h3>
 						<p>
 							Allows you to query and introspect tools during a build and configure them to get 
-							reproducibile results
+							reproducibile results as well as define toolchains
 						</p>
 					</section>
 					<section data-auto-animate>
@@ -139,7 +139,49 @@
 						<h3>Level 4 - Bazel</h3>
 						<p>
 							Toolchains are treated as normal inputs. This trivially allows defining custom toolchains 
-							whilst keeping the same level of reproducibility.
+							whilst keeping the same level of reproducibility
+						</p>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Distributed/remote builds</h2>
+						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Distributed/remote builds</h2>
+						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
+						<sub>* also the thing that pays for my salary :)</sub>
+					</section>
+					<section data-auto-animate>
+						<h2>Distributed builds</h2>
+						<h3>Level 1 - Make, Ninja, Meson</h3>
+						<p>
+							No distributed caching or execution out of the box, everything runs locally
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 2 - Gradle</h3>
+						<p>
+							Has support for remote caching, but no remote execution of build targets. Once again the low level of 
+							granularity negatively impacts the potential of this feature
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 3 - FASTBuild</h3>
+						<p>
+							Supports both distributed execution and caching, however it is limited to just a list of well-known 
+							compilers when it comes to remote execution
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 4 - Bazel</h3>
+						<p>
+							Supports both distributed builds and caching for arbitrary tools, including compilers, linkers, tests
+							and whatever you can think of
 						</p>
 					</section>
 				</section>
