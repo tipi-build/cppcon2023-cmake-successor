@@ -21,11 +21,11 @@
 				<section>Comparing build-systems</section>
 				<section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>How many indipendent targets can a build system run concurrently at most?</h3>
 					</section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>Level 1 - Gradle</h3>
 						<pre>
 .
@@ -39,7 +39,7 @@
 						</pre>
 					</section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>Level 1 - Gradle</h3>
 						<p>
 							Sub-project level parallelism. It is very limited as projects have very low granularity
@@ -47,21 +47,21 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>Level 2 - Make, FASTBuild</h3>
 						<p>
 							Targets are more granular and the size of the job pool can be specified by a flag (-j/--jobs)
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>Level 3 - Bazel</h3>
 						<p>
 							Same as the level before, but resource-intensive targets can reduce the level of parallelism on-demand 
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Parallelism</h1>
+						<h2>Parallelism</h2>
 						<h3>Level 4 - Ninja</h3>
 						<p>
 							You can define separate job-pools each of which with a different size (eg: link=1 and cc=16)
@@ -70,18 +70,18 @@
 				</section>
 				<section>
 					<section data-auto-animate>
-						<h1>Caching</h1>
+						<h2>Caching</h2>
 						<h3>How many targets can a build system avoid rebuilding?</h3>
 					</section>
 					<section data-auto-animate>
-						<h1>Caching</h1>
+						<h2>Caching</h2>
 						<h3>Level 1 - Gradle</h3>
 						<p>
 							Once again the low level of granularity means that even small changes will rebuild very large targets
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Caching</h1>
+						<h2>Caching</h2>
 						<h3>Level 2 - Make, Ninja</h3>
 						<p>
 							Check timestamps on the individual input files and rebuild targets if any change. Caching is completely 
@@ -89,19 +89,57 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Caching</h1>
-						<h3>Level 2 - FASTBuild</h3>
+						<h2>Caching</h2>
+						<h3>Level 3 - FASTBuild</h3>
 						<p>
 							Supports the same type of file-system caching as the previous level and adds support for distributed 
 							caching
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h1>Caching</h1>
-						<h3>Level 3 - Bazel</h3>
+						<h2>Caching</h2>
+						<h3>Level 4 - Bazel</h3>
 						<p>
 							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
 							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
+						</p>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Given the same inputs and configuration, a target should yield identical outputs</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
+						<p>
+							Provide no real facility to ensure reproducibility and, thus, hermeticity is something
+							that the developers have to take care of
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 2 - Meson</h3>
+						<p>
+							Allows you to query and introspect tools during a build and configure them to get 
+							reproducibile results
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 3 - Gradle</h3>
+						<p>
+							Predefines robust and easy to configure toolchains out of the box. This way builds do not normally rely
+							on any system-wide installed tools/libraries that can change between different workstations
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Reproducibility</h2>
+						<h3>Level 4 - Bazel</h3>
+						<p>
+							Toolchains are treated as normal inputs. This trivially allows defining custom toolchains 
+							whilst keeping the same level of reproducibility.
 						</p>
 					</section>
 				</section>
