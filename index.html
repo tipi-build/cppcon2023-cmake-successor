@@ -71,7 +71,7 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>How about CMake?</h2>
+						<h2>Will it CMake?</h2>
 						<p>
 							Job pools can be used when compiling...
 
@@ -95,7 +95,7 @@ add_custom_target(protocgen
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>How about CMake?</h2>
+						<h2>Will it CMake?</h2>
 						<p>
 							... and linking ...
 
@@ -119,7 +119,7 @@ add_custom_target(protocgen
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>How about CMake?</h2>
+						<h2>Will it CMake?</h2>
 						<p>
 							... and pretty much anywhere else 😁
 
@@ -127,7 +127,7 @@ add_custom_target(protocgen
 set_property(GLOBAL PROPERTY JOB_POOLS 
 			compile=16 
 			link=1 
-			codegen=16)
+			codegen=4)
 
 set_property(TARGET atarget 
 			PROPERTY JOB_POOL_COMPILE compile)
@@ -178,6 +178,26 @@ add_custom_target(protocgen
 							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
 							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
 						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							By using Make or Ninja we get some level of file-system caching for "free"
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							However, we can replace the standard CMake client with tipi. 
+							This enables remote caching out of the box 
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<img src="dist/assets/tipi-comprehensive-packs.png">
 					</section>
 				</section>
 				<section>
