@@ -19,7 +19,8 @@
 				<section data-background="dist/assets/first-slide.png"></section>
 				<section>Defining safety in software</section>
 				<section>
-					<h1>Comparing build-systems</h1>
+					<h1 class="r-fit-text">Comparing</h1>
+					<h1 class="r-fit-text">build-systems</h1>
 				</section>
 				<section>
 					<section data-auto-animate>
@@ -67,6 +68,78 @@
 						<h3>Level 4 - Ninja</h3>
 						<p>
 							You can define separate job-pools each of which with a different size (eg: link=1 and cc=16)
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>How about CMake?</h2>
+						<p>
+							Job pools can be used when compiling...
+
+							<pre><code data-trim data-noescape data-line-numbers="1-2,6-7">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=16)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>How about CMake?</h2>
+						<p>
+							... and linking ...
+
+							<pre><code data-trim data-noescape data-line-numbers="1,3,9-10">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=16)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>How about CMake?</h2>
+						<p>
+							... and pretty much anywhere else 😁
+
+							<pre><code data-trim data-noescape data-line-numbers="1,4,12-15">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=16)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
 						</p>
 					</section>
 				</section>
