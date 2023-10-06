@@ -22,6 +22,24 @@
 			<div class="slides">
 				<section data-background="dist/assets/first-slide.png"></section>
 
+				<section>
+					<h1 class="r-fit-text">Reliable, Fast and Safe Builds</h1>
+					<img src="./assets/tipi-engflow.jpg">
+					<div class="columns">
+						<div class="column" style="font-size:0.5em;">
+							<img src="./assets/damien.jpg" style="height: 13vh;">
+							<p>Damien</p>
+							<p>co-founder, tipi.build</p>
+							<p>@daminetreg / damien@tipi.build</p>
+						</div>
+						<div class="column" style="font-size:0.5em;">
+							<img src="./assets/antonio.jpg"  style="height: 13vh;">
+							<p>Stefano</p>
+							<p>DevEx Engineer, EngFlow</p>
+							<p>@TheGrizzlyDev / stefano@engflow.com</p>
+						</div>
+					</div>
+				</section>
 
 				
 				<section>
@@ -215,34 +233,208 @@
 			</section>
 
 			<section>
-				<h1 class="r-fit-text">This cannot be caught without testing and fuzzing.</h1>
-				<h2>Fuzzing has nothing to do with newer syntax and object models.</h2>
+				<h1 class="r-fit-text">Rust borrow checker doesn't see this</h1>
+				<p>In C++ we have <b>std::bad_alloc</b> and could recover, but how to ensure it's catched ?</p>
 			</section>
 
 			<section>
-				<img src="assets/RequirementsSuccessorLanguagesBretBrownCppNow2023.png" alt="Requirements for C++ Successor Languages - Bret Brown - CppNow 2023">
+				<h2 class="">DON'T</h2>
+				<p><img src="assets/rewriteItInRust.jpeg" style="max-height: 50vh"/></p>
 			</section>
-
-
 		</section>
+
+	<section>
+		<section>
+			<h1 class="r-fit-text"> Achieve safety in C++ today </h1>
+		</section>
+		<section>
+			<h1 class="r-fit-text"> Achieve safety in C++ today </h1>
+			<h2 >with the CppCoreGuidelines </h2>
+			<img src="assets/cpp_core_guidelines.png" />
+		</section>
+
+		<section>
+			<h1 class="r-fit-text">Achieving safety in C++ today</h1>
+			<h2 >with <b>CMake</b>, <b>Clang Tidy</b> and the <b>CppCoreGuidelines</b></h2>
+		</section>
+
+		<section>
+		<pre><code data-trim data-noescape class="language-cmake">
+			set(CMAKE_CXX_CLANG_TIDY 
+					clang-tidy -checks=-*,cppcoreguidelines-*)
+		</code></pre>
+		<a href="https://clang.llvm.org/extra/clang-tidy/checks/list.html" target="_blank">Clang Tidy Checks</a>
+		</section>
+
+	</section>
 
 	<section>
 		<section>
 			<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
 			<h2 >with CMake </h2>
+
 		</section>
+
 		<section>
 			<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
-			<h2 >with CMake </h2>
-
+			<h2 >Let's focus </h2>
 			<ul class="bulletpoints">
 				<li>Memory Safety</li>	
 				<li>Arithmetic Safety</li>
 				<li>Software Supply Chain Safety</li>
 			</ul>
+
 		</section>
 
+		<section>
+		<div class="hero-body">
+      <div >
+        <p class="title">
+          Sanitizers for C++ builds with CMake
+        </p>
+        <p class="subtitle">
+					<a href="https://github.com/tipi-build/sanitizers-cmake">github.com/tipi-build/sanitizers-cmake</a>
+        </p>
+        <p class="content is-large ">
+          <br>
+          <img src="assets/sanitizers-cmake.png" />
+        </p>
+      </div>
+    </div>
+		</section>
+
+		<section>
+			<h1 class="r-fit-text"> Sanitizers for C++ builds</h1>
+
+				<ul class="bulletpoints">
+					<li>AddressSanitizer (ASan)</li>
+					<li>UndefinedBehaviorSanitizer (UBSsan)</li>
+					<li>ThreadSanitizer (TSan)</li>
+					<li>LeakSanitizer (LSan)</li>
+					<li>MemorySanitizer (MSan)</li>
+				</ul>
+		</section>
+
+		<section  data-auto-animate>
+			<h1 class="r-fit-text">Using LLVM Sanitizers in your CMake</h1>
+			<p>
+				<pre><code data-trim data-noescape class="language-cmake">
+				project(safepp)
+				
+				find_package(Sanitizers MODULE REQUIRED)
+				
+				add_executable(use-after-free test/use-after-free.cpp)
+				
+				# enable sanitizers
+				add_sanitizers(use-after-free)
+				</code></pre>
+			</p>
+		</section>
+
+
+		<section  ref="sc-16" class="hero my-6   is-fullheight is-fullheight-with-navbar ">
+			<div class="hero-body has-text-centered">
+			<div class="container is-fluid "> 
+				<div class="content has-text-centered">
+					<h1 class="title"> So we done ? </h1>
+					<p class="subtitle  my-2"> </p>
+				</div>        
+			</div>
+			</div>
+		</section>
+	
+	
+		<section  >
+			<div class="hero-body has-text-centered">
+			<div class="container is-fluid "> 
+				<div class="content has-text-centered">
+					<h1 class="title"> ASan, TSan, UBSan are incompatible with each others ❌ </h1>
+					<p class="subtitle  my-2"> </p>
+				</div>        
+			</div>
+			</div>
+		</section>
+	
+	 <section  >
+					<p class="title">
+					 Multiple builds and test runs
+					</p>
+					<p class="subtitle">
+						Separate CMake toolchain files
+					</p>
+				 <p >
+				sanitize-ub.cmake :
+	<pre><code data-trim data-noescape class="language-cmake">
+	set(SANITIZE_UNDEFINED TRUE CACHE BOOL "" FORCE)
+	</code></pre>
+					</p>
+	
+				 <p >
+				sanitize-address.cmake :
+	<pre><code data-trim data-noescape class="language-cmake">
+	set(SANITIZE_THREAD TRUE CACHE BOOL "" FORCE)
+	</code></pre>
+					</p>
+		</section>
+	
+
+
+
+	 <section>
+			<div class="hero-body">
+				<div >
+					<p class="title">
+					 Multiple builds and test runs
+					</p>
+					<p class="subtitle">
+						Separate CMake toolchain files
+					</p>
+				 <p>
+
+				sanitize-memory.cmake :
+	<pre><code data-trim data-noescape class="language-cmake">
+	set(SANITIZE_MEMORY TRUE CACHE BOOL "" FORCE)
+	</code></pre>
+					</p>
+	
+				 <p>
+				sanitize-thread.cmake :
+	<pre><code data-trim data-noescape class="language-cmake">
+	set(SANITIZE_THREAD TRUE CACHE BOOL "" FORCE)
+	</code></pre>
+					</p>
+				</div>
+			</div>
+		</section>
+	
+	
+		<section  ref="sc-19" class="hero my-6   is-fullheight is-fullheight-with-navbar ">
+			<div class="hero-body has-text-centered">
+			<div class="container is-fluid "> 
+				<div class="content has-text-centered">
+					<h1 class="title"> Memory Safety with Asan </h1>
+					<p class="subtitle  my-2"> </p>
+				</div>        
+			</div>
+			</div>
+		</section>
+	
+			<section  ref="sc-20" class="hero my-6   is-fullheight is-fullheight-with-navbar ">
+			<div class="hero-body has-text-centered">
+			<div class="container is-fluid "> 
+				<div class="content has-text-centered">
+					<h1 class="title"> Arithmetic Safety with UBSan </h1>
+					<p class="subtitle  my-2">  </p>
+				</div>        
+			</div>
+			</div>
+		</section>
+
+
 	</section>
+	   
+
+
 				
 				<section>
 					<section>
@@ -528,8 +720,8 @@ add_custom_target(protocgen
 						<p>
 							Problem 2: __DATE__ and __TIME__ macros
 						</p><p>
-							Because these macros change with each and every compilation they will always 
-							invalidate a large portion of the build
+							<!--Because these macros change with each and every compilation they will always 
+							invalidate a large portion of the build-->
 						</p>
 					</section>
 					<section data-auto-animate>
@@ -549,10 +741,10 @@ add_link_options("/Brepro")
 						<p>
 							Problem 2: __DATE__ and __TIME__ macros
 						</p>
-						<p>Clang (via an environment variable)</p>
+						<p>GCC (via an environment variable)</p>
 						<pre>
 							<code>
-ZERO_AR_DATE=0
+SOURCE_DATE_EPOCH=1621012303
 							</code>
 						</pre>
 					</section>
@@ -561,13 +753,15 @@ ZERO_AR_DATE=0
 						<p>
 							Problem 2: __DATE__ and __TIME__ macros
 						</p>
-						<p>GCC (via an environment variable)</p>
-						<pre>
-							<code>
-SOURCE_DATE_EPOCH=628727383
-							</code>
-						</pre>
+						<p>GCC + Clang </p>
+						<pre><code class="language-cmake">
+# Rewrite __DATE__
+add_definitions(-D__DATE__="May  14 2021")
+add_definitions(-D__TIME__="17:11:43")
+add_compile_options(-Wno-builtin-macro-redefined)
+							</code></pre>
 					</section>
+					
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
 						<p>
@@ -603,14 +797,161 @@ endforeach()
 							different results 
 						</p>
 					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 4: __FILE__ macro
-						</p><p>
-							Tipi relocates your code under a common path that is the same for all users
-						</p>
-					</section>
+
+
+					<section  ref="sc-26" class="hero is-fullheight is-fullheight-with-navbar ">
+						<div class="hero-body">
+							<div >
+								<p class="title">
+									__FILE__ macro and path prefix
+								</p>
+								<p class="subtitle">
+								</p>
+								<p class="content is-large ">
+									<ul class="bulletpoints">
+										<li>MSVC: no options</li>
+										<li>GCC, Clang: -ffile-prefix-map=OLD=NEW : ❌ <b>cumbersome</b></li>
+									</ul>
+								</p>
+							</div>
+						</div>
+						</section>
+					
+						<section  ref="sc-27" class="hero is-fullheight is-fullheight-with-navbar ">
+						<div class="hero-body">
+							<div >
+								<p class="title">
+									__FILE__ macro and path prefix
+								</p>
+								<p class="subtitle">
+								</p>
+								<p class="content is-large ">
+									<ul class="bulletpoints">
+										<li>Just build in the same environment</li>
+										<li>At the same path</li>
+									</ul>
+								</p>
+							</div>
+						</div>
+						</section>
+					
+					 <section  ref="sc-29" class="hero is-fullheight is-fullheight-with-navbar ">
+							<div class="hero-body">
+								<div >
+									<p class="title">
+									 Let's merge Git and Ninja !
+									</p>
+									<p class="subtitle">
+										Because we can use Git : 
+									</p>
+									<p class="content is-large ">
+										<ul class="bulletpoints">
+											<li>Content Addressable Filesystem ✅ </li>
+											<li>to clone sources and build trees in invariant paths ✅ </li>
+											<li>to <b>track changes</b> ✅</li>
+										</ul>
+									</p>
+								</div>
+							</div>
+						</section>
+
+						<section  ref="sc-35" class="hero  is-fullheight is-fullheight-with-navbar ">
+							<div class="hero-body">
+								<div class="content has-text-centered">
+									<h1 class="big_title">Stores code in an invariant path</h1>
+					
+									<div class="container ">
+										<div class="columns is-centered has-text-centered">
+					
+											<div class="column is-10-widescreen">
+												<img src="assets/cache/00-code.png" />
+											</div>
+										</div>
+					
+										<div class="columns is-centered has-text-justified my-6">
+					
+											<div class="column is-half is-one-third-desktop">
+												<div class="content is-normal ">
+													<p></p>
+												</div>
+											</div>
+										</div>
+					
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section  ref="sc-36" class="hero  is-fullheight is-fullheight-with-navbar ">
+							<div class="hero-body">
+								<div class="content has-text-centered">
+									<h1 class="big_title">git based sources mirroring</h1>
+					
+									<div class="container ">
+										<div class="columns is-centered has-text-centered">
+					
+											<div class="column is-10-widescreen">
+												<img src="assets/cache/01-mirroring.png"  />
+											</div>
+										</div>
+					
+										<div class="columns is-centered has-text-justified my-6">
+					
+											<div class="column is-half is-one-third-desktop">
+												<div class="content is-normal ">
+													<p>Cache id based on the repository origin</p>
+												</div>
+											</div>
+										</div>
+					
+									</div>
+								</div>
+							</div>
+						</section>
+
+					 <section ref="sc-37"  class="hero  is-fullheight is-fullheight-with-navbar ">
+							<div class="hero-body">
+								<div class="content has-text-centered">
+									<h1 class="big_title">commit-id addressable builds</h1>
+					
+									<div class="container">
+										<div class="columns is-centered has-text-centered">
+					
+											<div class="column is-10-widescreen">
+												<img src="assets/cache/02-snapshots.png"/>
+											</div>
+										</div>
+					
+										<div class="columns is-centered has-text-justified my-6">
+					
+											<div class="column is-half is-one-third-desktop">
+												<div class="content is-normal ">
+													<p></p>
+												</div>
+											</div>
+										</div>
+					
+									</div>
+								</div>
+							</div>
+						</section>	
+	
+					
+
+						<section  ref="sc-34" class="hero my-6 is-light  is-fullheight is-fullheight-with-navbar ">
+							<div class="hero-body has-text-centered">
+							<div class="container is-fluid "> 
+								<div class="content has-text-centered">
+									<h1 class="title">Git + Ninja + cache packs ✅</h1>
+									<br>
+									<p class="subtitle">__FILE__ problem solved 🫡
+									</p>
+								</div>        
+							</div>
+							</div>
+						</section>
+					
+
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
 						<p>
@@ -629,6 +970,12 @@ endforeach()
 						</p>
 					</section>
 				</section>
+				
+
+
+
+
+
 				<section>
 					<section data-auto-animate>
 						<h2>Dependency management</h2>
@@ -670,6 +1017,142 @@ endforeach()
 						</p>
 					</section>
 				</section>
+
+				<section>
+					<section>
+						<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
+						<h2 >Let's focus </h2>
+						<ul class="bulletpoints">
+							<li>Software Supply Chain Safety</li>
+						</ul>
+			
+			
+					</section>
+			
+					<section>
+						<h1 class="r-fit-text"> Software Supply Chain </h1>
+						<h2 >But the package management in C++ is 🙉 </h2>
+			
+					</section>
+					<section>
+						<h1 class="r-fit-text"> Actually we have one </h1>
+						<h2 >But the package management in C++ is 🙉 </h2>
+						<ul class="bulletpoints">
+							<li>CMake is the de-facto standard for C++ builds</li>
+							<li>It has FetchContent and we love it ❤️</li>
+						</ul>
+					</section>
+			
+					<section data-auto-animate>
+						<h2>FetchContent</h2>
+						<p>
+					<pre><code class="language-cmake" data-trim data-noescape>
+						Include(FetchContent)
+						FetchContent_Declare(
+								Boost
+								GIT_REPOSITORY https://github.com/boostorg/boost.git
+								GIT_TAG        boost-1.80.0
+						)
+						FetchContent_MakeAvailable(Boost)
+						find_package(boost_filesystem CONFIG REQUIRED)
+						
+						target_link_libraries(app Boost::filesystem)
+					</code></pre>
+					</p>
+				</section>
+			
+				<section>
+					<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
+					<h2 >🕠 </h2>
+					<ul class="bulletpoints">
+					</ul>
+				</section>
+			
+				<section>
+					<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
+					<h2 >🕠 </h2>
+					<ul class="bulletpoints">
+						<li>⚡ No problem : we can optimize it </li>
+						<li>Let's use CMake <b>SET_DEPENDENCY_PROVIDER</b></li>
+					</ul>
+				</section>
+			
+				<section>
+					<h1 class="r-fit-text">Intercept FetchContent calls</h1>
+					<h2 > </h2>
+			
+					<pre><code class="language-cmake" data-trim data-noescape>
+					macro(tipi_provide_dependency method package_name)
+						set(oneValueArgs
+							GIT_REPOSITORY
+							GIT_TAG
+						)
+				
+						cmake_parse_arguments(
+							ARG "${options}" "${oneValueArgs}"
+							"${multiValueArgs}" ${ARGN} )
+			
+						# Do something with ${ARG_GIT_REPOSITORY} 
+			
+						FetchContent_SetPopulated( ${package_name} )
+					endmacro()
+			
+					</code></pre>
+			
+				</section>
+			
+				<section>
+					<h1 class="r-fit-text">Install dependency provider</h1>
+					<h2 > </h2>
+					dependency_provider.cmake
+				<pre><code class="language-cmake" data-trim data-noescape>
+					cmake_language(
+						SET_DEPENDENCY_PROVIDER tipi_provide_dependency
+						SUPPORTED_METHODS 
+							FETCHCONTENT_MAKEAVAILABLE_SERIAL
+					)	
+					</code></pre>
+					
+					<pre><code class="language-cmake" data-trim data-noescape>
+					list (APPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
+						 dependency_provider.cmake)
+					</code></pre>
+				</section>
+			
+				<section>
+					<img src="assets/cmake-tipi-provider.png" alt="CMake tipi.build provider">
+				</section>
+			
+				<section data-auto-animate>
+					<h2>Let's install Boost</h2>
+					<p>
+				<pre><code class="language-cmake" data-trim data-noescape>
+					Include(FetchContent)
+					FetchContent_Declare(
+							Boost
+							GIT_REPOSITORY https://github.com/boostorg/boost.git
+							GIT_TAG        boost-1.80.0
+					)
+					FetchContent_MakeAvailable(Boost)
+				</code></pre>
+				</p>
+				</section>
+			
+				<section>
+					<h1 class="r-fit-text"> Advantages</h1>
+			
+					<ul class="bulletpoints">
+						<li>No lock-in, pure CMake</li>
+						<li>Rebuild from sources if needed</li>
+						<li>Efficient and secure build caching</li>
+					</ul>
+				</section>
+			
+			</section>
+
+
+
+
 				<section>
 					<section data-auto-animate>
 						<h2>Distributed/remote builds</h2>
