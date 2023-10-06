@@ -951,7 +951,7 @@ endforeach()
 
 				<section>
 					<section data-auto-animate>
-						<h2>Dependency management &amp; Software Supply Chain Safety</h2>
+						<h2>Dependency management</h2>
 						<h3>How a build system handles 3rd-party code</h3>
 					</section>
 					<section data-auto-animate>
@@ -982,15 +982,14 @@ endforeach()
 					</section>
 
 						<section>
-							<h1 class="r-fit-text"> Software Supply Chain </h1>
-							<h2 >But the package management in C++ is 🙉 </h2>
+							<h2 >But package management in C++ is 🙉 </h2>
 				
 						</section>
 						<section>
-							<h1 class="r-fit-text"> Actually we have one </h1>
+							<h2 > Actually we have a good solution</h1>
 							<ul class="bulletpoints">
-								<li>CMake is the de-facto standard for C++ builds</li>
-								<li>It has FetchContent and we love it ❤️</li>
+								<li>CMake is the de-facto standard</li>
+								<li>It has FetchContent ❤️</li>
 							</ul>
 						</section>
 				
@@ -1116,7 +1115,7 @@ endforeach()
 				</section>
 
 				<section>
-						<section>
+					<section>
 						<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
 						<h2 > SBOMs </h2>
 					</section>				
@@ -1126,23 +1125,27 @@ endforeach()
 						<h2 > SBOMs </h2>
 						<ul class="bulletpoints">
 							<li>Software Supply Chain Safety</li>
-							<li>NTIA Compliance</li>
+							<li>NTIA Compliance Validation</li>
 						</ul>	
 					</section>
-			
+
 					<section>
-						<h1 class="r-fit-text"> Software Supply Chain </h1>
-						<h2 >But the package management in C++ is 🙉 </h2>
-			
+						<div class="hero-body">
+							<div >
+								<p class="title">
+									Manual Guided SBOM Generation
+								</p>
+								<p class="subtitle">
+									<a href="https://github.com/DEMCON/cmake-sbom">github.com/DEMCON/cmake-sbom</a>
+								</p>
+								<p class="content is-large ">
+									<br>
+									<img src="assets/cmake-sbom.png" style="max-height: 40vh;"	/>
+								</p>
+							</div>
+						</div>
 					</section>
-					<section>
-						<h1 class="r-fit-text"> Actually we have one </h1>
-						<h2 >But the package management in C++ is 🙉 </h2>
-						<ul class="bulletpoints">
-							<li>CMake is the de-facto standard for C++ builds</li>
-							<li>It has FetchContent and we love it ❤️</li>
-						</ul>
-					</section>
+
 			
 					<section data-auto-animate>
 						<h2>SBOMs generation</h2>
@@ -1173,9 +1176,43 @@ endforeach()
 					</code></pre>
 					</p>
 				</section>
-			
-			
+
+
+
+				<section data-auto-animate>
+					<h2>SBOMs generation</h2>
+					<p>
+				<pre><code class="language-cmake" data-trim data-noescape>
+					install(
+							TARGETS app
+							EXPORT "${targets_export_name}"
+							RUNTIME DESTINATION "bin"
+					)
+					sbom_add(TARGET app)
+
+					sbom_finalize()
+				</code></pre>
+				</p>
 			</section>
+
+			<section>
+				<div class="hero-body">
+					<div >
+						<p class="title">
+							Automatic SBOM Generation for your dependencies
+						</p>
+						<p class="subtitle">
+							<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
+						</p>
+						<p class="content is-large ">
+							<br>
+							<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
+						</p>
+					</div>
+				</div>
+			</section>
+			
+		</section>
 
 
 
