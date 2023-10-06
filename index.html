@@ -237,6 +237,134 @@ add_custom_target(protocgen
 							whilst keeping the same level of reproducibility
 						</p>
 					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Actually, yes! But we have a few problems to fix 😎
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 1: file ordering matters
+						</p><p>
+							Building `a.cpp` and `b.cpp` can yield different results from building
+							`b.cpp` and `a.cpp`!
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 1: file ordering matters
+						</p><p>
+							Luckily CMake forces you to write input sources manually, so ordering is guaranteed! 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p><p>
+							Because these macros change with each and every compilation they will always 
+							invalidate a large portion of the build
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>MSVC</p>
+						<pre>
+							<code>
+add_link_options("/Brepro")
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>Clang (via an environment variable)</p>
+						<pre>
+							<code>
+ZERO_AR_DATE=0
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>GCC (via an environment variable)</p>
+						<pre>
+							<code>
+SOURCE_DATE_EPOCH=628727383
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 3: Randomness when using `-flto` with GCC
+						</p><p>
+							LTO on GCC will produce intermediary files with completely random names 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 3: Randomness when using `-flto` with GCC
+						</p><pre><code>
+set(APP_SOURCES
+	app.cpp
+	lib.cpp)
+foreach(_file ${APP_SOURCES})
+	file(SHA1 ${_file} sha1sum)
+	string(SUBSTRING ${sha1sum} 0 8 sha1sum)
+	set_property(SOURCE ${_file} 
+		APPEND_STRING PROPERTY 
+		COMPILE_FLAGS 
+		"-frandom-seed=0x${sha1sum}")
+endforeach()
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 4: __FILE__ macro
+						</p><p>
+							The __FILE__ macro is very likely to change between different workstations and thus produce
+							different results 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 4: __FILE__ macro
+						</p><p>
+							Tipi ensures that the project is always built in the same path
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 5: Different toolchains
+						</p><p>
+							Using different toolchains or different versions of the same toolchain can cause 
+							different results
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 5: Different toolchains
+						</p><p>
+							Tipi introduces reproducibile toolchains that can also be used remotely
+						</p>
+					</section>
 				</section>
 				<section>
 					<section data-auto-animate>
