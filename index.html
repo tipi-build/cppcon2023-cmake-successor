@@ -9,14 +9,21 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/engflow-tipi.css">
+		<link rel="stylesheet" href="css/bulma.min.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/solarized-light.css">
+		
+		<!-- ttyplayer stylesheet -->
+		<link rel="stylesheet" href="plugin/ttyplayer/ttyplayer.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section data-background="dist/assets/first-slide.png"></section>
+
+
+				
 				<section>
 					<section>
 						<h1 class="r-fit-text">Defining safety in software</h1>
@@ -85,29 +92,183 @@
 
 					<section>
 						<h1 class="r-fit-text">Are we safe yet ?</h1>
-						<h2 class="r-fit-text">We could !</h2>
+						<h3>We could !</h3>
 							
 						<p>
-							We could but it's more configuration work 🐌
+							It's more configuration work 🐌
 						</p>
 					</section>
 
 					<section>
 						<h1 class="r-fit-text">Are we safe yet ?</h1>
-						<h2>We should !</h2>
-							
-						<img src="./assets/safety/EU-safety.png" style="max-height: 20vh; width: 20vw;">
+						<h3>We should !</h3>
+						<div class="columns">
+							<div class="column">
+								<img src="./assets/safety/EU-safety.png">
+							</div>
+							<div class="column">
+								<img src="./assets/safety/NSA-safety.png">
+							</div>
+							<div class="column">
+								<img src="./assets/safety/US-safety.png">
+							</div>
+						</div>
 					</section>
 
-
-					
+					<section>
+						<h1 class="r-fit-text">What is Safety ?</h1>
+						<div class="columns">
+							<div class="is-two-third">
+							<ul class="bulletpoints">
+							<li>Type Safety</li>
+							<li>Memory Safety
+								<ul class="bulletpoints">
+									<li>Lifetime safety</li>
+									<li>Bounds safety</li>
+									<li>Initialization safety</li>
+								</ul>
+							</li>	
+							<li>Object access safety</li>
+							<li>Thread Safety</li>
+							<li>Arithmetic safety</li>
+							<li>Definition safety</li>
+						</ul>
+						</div>
+					</div>
 				</section>
+
+				<section>
+					<h1 class="r-fit-text"> Software Supply Chain Safety ?</h1>
+					<div class="columns">
+						<div class="is-two-third">
+							<ul class="bulletpoints">
+								<li>Reproducibility</li>
+								<li>Traceability</li>
+								<li>Release delivery time</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section data-auto-animate>
+					<h2>Perspectives and Boundaries</h2>
+					<p>
+				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="4-5,7">
+			fn calculate_sha1(path: &Path) 
+				-> std::io::Result<[u8; 20]> {
+					let mut file = open_file(path)?;
+					let size 
+						= file.metadata().map(|m| m.len() as usize);
+					let mut buffer
+						= Vec::with_capacity(size.unwrap_or(0)); 
+			
+					file.read_to_end(&mut buffer)?;
+			
+					...
+			}
+				</code></pre>
+				</p>
+			</section>
+
+			<section data-auto-animate>
+					<h2>Perspectives and Boundaries</h2>
+					<p>
+				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="7-8">
+			fn calculate_sha1(path: &Path) 
+				-> std::io::Result<[u8; 20]> {
+					let mut file = open_file(path)?;
+					let size 
+						= file.metadata().map(|m| m.len() as usize);
+					let mut buffer
+						= Vec::with_capacity(size.unwrap_or(0)); 
+						// This can panic -^
+			
+					file.read_to_end(&mut buffer)?;
+			
+					...
+			}
+				</code></pre>
+				</p>
+			</section>
+			
+			<section data-auto-animate>
+					<h2>Perspectives and Boundaries</h2>
+					<p>
+				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="8,9">
+			fn calculate_sha1(path: &Path) 
+				-> std::io::Result<[u8; 20]> {
+					let mut file = open_file(path)?;
+					let size 
+						= file.metadata().map(|m| m.len() as usize);
+					let mut buffer
+						= Vec::with_capacity(size.unwrap_or(0)); 
+						// This can panic -^
+						// static-analysis can't help
+					file.read_to_end(&mut buffer)?;
+			
+					...
+			}
+				</code></pre>
+				</p>
+			</section>
+
+			<section>
+				<h1 class="r-fit-text">This cannot be caught without testing and fuzzing.</h1>
+				<h2>Fuzzing has nothing to do with newer syntax and object models.</h2>
+			</section>
+
+			<section>
+				<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
+				<h2 >with CMake </h2>
+			</section>
+
+		</section>
+				
+				<section>
+					<section>
+						<img src="assets/RequirementsSuccessorLanguagesBretBrownCppNow2023.png" alt="Requirements for C++ Successor Languages - Bret Brown - CppNow 2023">
+					</section>
+					<section>
+						<h1 class="r-fit-text">Requirements for C++ Successor Languages</h1>
+						<div class="columns">
+							<div class="is-two-third">
+								<ul class="bulletpoints">
+									<li>Iterative migration</li>
+									<li>CMake compatibility</li>	
+								</ul>
+							</div>
+						</div>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h1 class="r-fit-text">A love ❤️ letter to CMake</h1>
+					</section>
+
+					<section>
+						<h2 class="">Thank you CMake 🙏🏼</h2>
+						<p>autotools, qmake and SCons almost disappeared 🎯</p>
+					</section>
+
+					<section>
+						<h2 class="">"CMake is a crappy C" - <span style="font-style: italic;">Bill Hoffman</span></h2>
+					</section>
+
+					<section>
+						<h2 class="">CMake is about the <span style="font-style: italic;">timelessness</span> of your builds.</h2>
+					</section>
+				</section>
+
 				<section>
 					<h1 class="r-fit-text">Comparing</h1>
 					<h1 class="r-fit-text">build-systems</h1>
 				</section>
 				<section>
 					<section data-auto-animate>
+						
 						<h2>Parallelism</h2>
 						<h3>How many independent targets can a build system run concurrently at most?</h3>
 					</section>
@@ -397,6 +558,26 @@ add_custom_target(protocgen
 					<h1>Demo time!</h1>
 					<sub>Or how much of this can we implement before Damien goes completely insane?</sub>
 				</section>
+				<section>
+					<div class="columns">
+						<div class="column">
+							<div class="ttyplayer box p0">
+						<div class="bar">
+							<div class="barbutton red"></div>
+							<div class="barbutton yellow"></div>
+							<div class="barbutton green"></div>
+						</div>
+						<div ref="terminal" class="screen">
+							<ttyplayer x-tty-recording="./assets/demo.ttyrec"/>
+						</div>    
+					</div>
+						</div>
+						<div class="column">
+							Second column
+						</div>
+					</div>
+					
+				</section>
 			</div>
 		</div>
 
@@ -404,6 +585,7 @@ add_custom_target(protocgen
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/ttyplayer/ttyplayer.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -411,8 +593,20 @@ add_custom_target(protocgen
 			Reveal.initialize({
 				hash: true,
 
+				ttyplayer: {
+					disableStdin: true,
+					speed: 1,
+					scrollback: 0,
+					theme: {
+						background: '#ffffff',
+						foreground: '#393A34'
+					},
+					cols: 80,
+					rows: 30
+				},
+
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealTtyPlayer ]
 			});
 		</script>
 	</body>
