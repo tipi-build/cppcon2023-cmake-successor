@@ -446,21 +446,21 @@ add_custom_target(protocgen
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
 						<p>
-							By using Make or Ninja we get some level of file-system caching for "free"
+							By using Make or Ninja we get file-system caching out-of-the-box
 						</p>
 					</section>
 
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
 						<p>
-							However, we can replace the standard CMake client with tipi. 
-							This enables remote caching out of the box 
+							However, we can replace the standard CMake client with tipi. Engflow and Tipi
+							partnered to bring remote execution and caching to CMake!
 						</p>
 					</section>
 
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
-						<img src="dist/assets/tipi-comprehensive-packs.png">
+						<img src="dist/assets/cmake-re-remote-caching.png" style="max-height: 50vh;">
 					</section>
 				</section>
 				<section>
@@ -498,6 +498,175 @@ add_custom_target(protocgen
 						<p>
 							Toolchains are treated as normal inputs. This trivially allows defining custom toolchains 
 							whilst keeping the same level of reproducibility
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Actually, yes! But we have a few problems to fix 😎
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 1: file ordering matters
+						</p><p>
+							Building `a.cpp` and `b.cpp` can yield different results from building
+							`b.cpp` and `a.cpp`!
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 1: file ordering matters
+						</p><p>
+							Luckily CMake forces you to write input sources manually, so ordering is guaranteed! 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p><p>
+							Because these macros change with each and every compilation they will always 
+							invalidate a large portion of the build
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>MSVC</p>
+						<pre>
+							<code>
+add_link_options("/Brepro")
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>Clang (via an environment variable)</p>
+						<pre>
+							<code>
+ZERO_AR_DATE=0
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 2: __DATE__ and __TIME__ macros
+						</p>
+						<p>GCC (via an environment variable)</p>
+						<pre>
+							<code>
+SOURCE_DATE_EPOCH=628727383
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 3: Randomness when using `-flto` with GCC
+						</p><p>
+							LTO on GCC will produce intermediary files with completely random names 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 3: Randomness when using `-flto` with GCC
+						</p><pre><code>
+set(APP_SOURCES
+	app.cpp
+	lib.cpp)
+foreach(_file ${APP_SOURCES})
+	file(SHA1 ${_file} sha1sum)
+	string(SUBSTRING ${sha1sum} 0 8 sha1sum)
+	set_property(SOURCE ${_file} 
+		APPEND_STRING PROPERTY 
+		COMPILE_FLAGS 
+		"-frandom-seed=0x${sha1sum}")
+endforeach()
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 4: __FILE__ macro
+						</p><p>
+							The __FILE__ macro is very likely to change between different workstations and thus produce
+							different results 
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 4: __FILE__ macro
+						</p><p>
+							Tipi relocates your code under a common path that is the same for all users
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 5: Different toolchains
+						</p><p>
+							Using different toolchains or different versions of the same toolchain can cause 
+							different results
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Problem 5: Different toolchains
+						</p><p>
+							Tipi introduces reproducibile toolchains that can also be used remotely
+						</p>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>How a build system handles 3rd-party code</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
+						<p>
+							No support at all, the developer gets to decide how to handle dependencies
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 2 - Gradle</h3>
+						<p>
+							Dependency management focuses on handling jars but is very crude everywhere else
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 3 - Meson, Bazel</h3>
+						<p>
+							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
+							languages and both provide centralised repositories of dependencies tweaked to 
+							better work with the respective build systems
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Yes! CMake offers both `ExternalProject_Add` and `FetchContent` that can be used to manage dependencies
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							There are also OSS tools to generate SBOMs: https://github.com/DEMCON/cmake-sbom
 						</p>
 					</section>
 				</section>
@@ -542,34 +711,16 @@ add_custom_target(protocgen
 							and whatever you can think of
 						</p>
 					</section>
-				</section>
-				<section>
 					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>How a build system handles 3rd-party code</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
+						<h2>Will it CMake?</h2>
 						<p>
-							No support at all, the developer gets to decide how to handle dependencies
+							100%! We can combine Engflow's Remote Execution, which uses the same RE level protocol Bazel adopts,
+							and tipi's single instance approach.
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 2 - Gradle</h3>
-						<p>
-							Dependency management focuses on handling jars but is very crude everywhere else
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 3 - Meson, Bazel</h3>
-						<p>
-							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
-							languages and both provide centralised repositories of dependencies tweaked to 
-							better work with the respective build systems
-						</p>
+						<h2>Will it CMake?</h2>
+						<img src="dist/assets/cmake-re-remote-execution.png" style="max-height: 50vh;">
 					</section>
 				</section>
 				<section>
