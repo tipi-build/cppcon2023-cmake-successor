@@ -34,48 +34,36 @@
 						</div>
 						<div class="column" style="font-size:0.5em;">
 							<img src="./assets/antonio.jpg"  style="height: 13vh;">
-							<p>Stefano</p>
+							<p>Antonio</p>
 							<p>DevEx Engineer, EngFlow</p>
-							<p>@TheGrizzlyDev / stefano@engflow.com</p>
+							<p>@TheGrizzlyDev / antonio@engflow.com</p>
 						</div>
 					</div>
 				</section>
 
 				
+
 				<section>
 					<section>
 						<h1 class="r-fit-text">A love ❤️ letter to CMake</h1>
 					</section>
+					<section>
+						<h1 class="r-fit-text">Giving CMake Superpowers 🚀</h1>
+					</section>
+
+
 
 					<section>
 						<h2 class="">Thank you CMake 🙏🏼</h2>
 						<p>autotools, qmake and SCons almost disappeared 🎯</p>
 					</section>
 
-					<section>
-						<img src="assets/RequirementsSuccessorLanguagesBretBrownCppNow2023.png" alt="Requirements for C++ Successor Languages - Bret Brown - CppNow 2023">
-					</section>
-					<section>
-						<h1 class="r-fit-text">Requirements for C++ Successor Languages</h1>
-						<div class="columns">
-							<div class="is-two-third">
-								<ul class="bulletpoints">
-									<li>Iterative migration</li>
-									<li><b>CMake</b> compatibility</li>	
-								</ul>
-							</div>
-						</div>
-					</section>
-				
-
-					<section>
-						<h2 class="">CMake is about the <span style="font-style: italic;">timelessness</span> of your builds.</h2>
-					</section>
+					
 				</section>
 
 				<section>
 					<section>
-						<h1 class="r-fit-text">Defining safety in software</h1>
+						<h1 >Safety</h1>
 					</section>
 					<section>
 
@@ -94,7 +82,7 @@
 						<h1 class="r-fit-text">Are we there yet ?</h1>
 							
 						<p class="content is-large ">
-							<img src="./assets/bjarne-are-we-safe.png" />
+							<img src="./assets/bjarne-are-we-safe.png" style="max-height:40vh;" />
 						</p>
 					</section>
 
@@ -105,7 +93,7 @@
 							<thead>
 								<tr>
 									<th>Are We "Thing" Yet </th>
-									<th></th>
+									<th>C++</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -121,10 +109,7 @@
 									<td>Are We Async Yet</td>
 									<td>✅</td>
 								</tr>
-								<tr>
-									<td>Are we safe yet?</td>
-									<td>🦆</td>
-								</tr>
+
 								<tr>
 									<td>Are We GUI Yet</td>
 									<td>✅</td>
@@ -133,7 +118,10 @@
 									<td>Are we stack-efficient yet?</td>
 									<td>✅</td>
 								</tr>
-
+								<tr>
+									<td>Are we safe yet?</td>
+									<td>🦆</td>
+								</tr>
 								
 							</tbody>
 						</table>
@@ -201,77 +189,13 @@
 			</section>
 
 			<section>
-				<section data-auto-animate>
-					<h2>Perspectives and Boundaries</h2>
-					<p>
-				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="4-5,7">
-			fn calculate_sha1(path: &Path) 
-				-> std::io::Result<[u8; 20]> {
-					let mut file = open_file(path)?;
-					let size 
-						= file.metadata().map(|m| m.len() as usize);
-					let mut buffer
-						= Vec::with_capacity(size.unwrap_or(0)); 
-			
-					file.read_to_end(&mut buffer)?;
-			
-					...
-			}
-				</code></pre>
-				</p>
-			</section>
+				<section>
+					<h2 class="">YOU DON'T NEED TO</h2>
+					<p><img src="assets/rewriteItInRust.jpeg" style="max-height: 50vh"/></p>
+				</section>
 
-			<section data-auto-animate>
-					<h2>Perspectives and Boundaries</h2>
-					<p>
-				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="7-8">
-			fn calculate_sha1(path: &Path) 
-				-> std::io::Result<[u8; 20]> {
-					let mut file = open_file(path)?;
-					let size 
-						= file.metadata().map(|m| m.len() as usize);
-					let mut buffer
-						= Vec::with_capacity(size.unwrap_or(0)); 
-						// This can panic -^
-			
-					file.read_to_end(&mut buffer)?;
-			
-					...
-			}
-				</code></pre>
-				</p>
-			</section>
-			
-			<section data-auto-animate>
-					<h2>Perspectives and Boundaries</h2>
-					<p>
-				<pre><code class="language-rust" data-trim data-noescape data-line-numbers="8,9">
-			fn calculate_sha1(path: &Path) 
-				-> std::io::Result<[u8; 20]> {
-					let mut file = open_file(path)?;
-					let size 
-						= file.metadata().map(|m| m.len() as usize);
-					let mut buffer
-						= Vec::with_capacity(size.unwrap_or(0)); 
-						// This can panic -^
-						// static-analysis can't help
-					file.read_to_end(&mut buffer)?;
-			
-					...
-			}
-				</code></pre>
-				</p>
-			</section>
 
-			<section>
-				<h1 class="r-fit-text">Rust borrow checker doesn't see this</h1>
-				<p>In C++ we have <b>std::bad_alloc</b> and could recover, but how to ensure it's catched ?</p>
-			</section>
 
-			<section>
-				<h2 class="">DON'T</h2>
-				<p><img src="assets/rewriteItInRust.jpeg" style="max-height: 50vh"/></p>
-			</section>
 		</section>
 
 	<section>
@@ -308,11 +232,10 @@
 
 		<section>
 			<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
-			<h2 >Let's focus </h2>
+			<h2 >Let's tackle first </h2>
 			<ul class="bulletpoints">
 				<li>Memory Safety</li>	
 				<li>Arithmetic Safety</li>
-				<li>Software Supply Chain Safety</li>
 			</ul>
 
 		</section>
@@ -443,8 +366,8 @@
 			<div class="hero-body has-text-centered">
 			<div class="container is-fluid "> 
 				<div class="content has-text-centered">
-					<h1 class="title"> Memory Safety with Asan </h1>
-					<p class="subtitle  my-2"> </p>
+					<h1 class="title"> We want to run these Sanitizers </h1>
+					<p class="subtitle  my-2"> on each key strokes</p>
 				</div>        
 			</div>
 			</div>
@@ -454,8 +377,8 @@
 			<div class="hero-body has-text-centered">
 			<div class="container is-fluid "> 
 				<div class="content has-text-centered">
-					<h1 class="title"> Arithmetic Safety with UBSan </h1>
-					<p class="subtitle  my-2">  </p>
+					<h1 class="title"> That requires a decent amount of CPU power </h1>
+					<p class="subtitle  my-2">Let's look at other build systems</p>
 				</div>        
 			</div>
 			</div>
@@ -470,7 +393,7 @@
 
 
 				<section>
-					<h1 class="r-fit-text">Comparing</h1>
+					<h1 class="r-fit-text">Learning from other</h1>
 					<h1 class="r-fit-text">build-systems</h1>
 				</section>
 				<section>
@@ -716,7 +639,7 @@ add_compile_options(-Wno-builtin-macro-redefined)
 						<p>
 							Problem 3: Randomness when using `-flto` with GCC
 						</p><p>
-							LTO on GCC will produce intermediary files with completely random names 
+							LTO on GCC will produce random symbols
 						</p>
 					</section>
 					<section data-auto-animate>
@@ -748,24 +671,6 @@ endforeach()
 					</section>
 
 
-					<section  ref="sc-26" class="hero is-fullheight is-fullheight-with-navbar ">
-						<div class="hero-body">
-							<div >
-								<p class="title">
-									__FILE__ macro and path prefix
-								</p>
-								<p class="subtitle">
-								</p>
-								<p class="content is-large ">
-									<ul class="bulletpoints">
-										<li>MSVC: no options</li>
-										<li>GCC, Clang: -ffile-prefix-map=OLD=NEW : ❌ <b>cumbersome</b></li>
-									</ul>
-								</p>
-							</div>
-						</div>
-						</section>
-					
 						<section  ref="sc-27" class="hero is-fullheight is-fullheight-with-navbar ">
 						<div class="hero-body">
 							<div >
@@ -778,6 +683,7 @@ endforeach()
 									<ul class="bulletpoints">
 										<li>Just build in the same environment</li>
 										<li>At the same path</li>
+										<li>But how ?</li>
 									</ul>
 								</p>
 							</div>
@@ -858,7 +764,7 @@ endforeach()
 							</div>
 						</section>
 
-					 <section ref="sc-37"  class="hero  is-fullheight is-fullheight-with-navbar ">
+					 <section ref="sc-37"  class=" ">
 							<div class="hero-body">
 								<div class="content has-text-centered">
 									<h1 class="big_title">commit-id addressable builds</h1>
@@ -887,7 +793,7 @@ endforeach()
 	
 					
 
-						<section  ref="sc-34" class="hero my-6 is-light  is-fullheight is-fullheight-with-navbar ">
+						<section  ref="sc-34" class=" ">
 							<div class="hero-body has-text-centered">
 							<div class="container is-fluid "> 
 								<div class="content has-text-centered">
@@ -900,24 +806,6 @@ endforeach()
 							</div>
 						</section>
 					
-
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 5: Different toolchains
-						</p><p>
-							Using different toolchains or different versions of the same toolchain can cause 
-							different results
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 5: Different toolchains
-						</p><p>
-							Tipi introduces reproducibile toolchains that can also be used remotely
-						</p>
-					</section>
 				</section>
 				
 				<section>
@@ -1035,7 +923,7 @@ endforeach()
 				</section>
 
 				<section>
-					<h1 class="r-fit-text">Rationale</h1>
+					<h1 class="">Rationale</h1>
 					<div class="columns">
 						<div class="is-two-third">
 							<ul class="bulletpoints">
@@ -1100,7 +988,6 @@ endforeach()
 						</section>
 						<section>
 							<h1 class="r-fit-text"> Actually we have one </h1>
-							<h2 >But the package management in C++ is 🙉 </h2>
 							<ul class="bulletpoints">
 								<li>CMake is the de-facto standard for C++ builds</li>
 								<li>It has FetchContent and we love it ❤️</li>
@@ -1351,28 +1238,7 @@ endforeach()
 					</section>
 				</section>
 				<section>
-					<h1>Demo time!</h1>
-					<sub>Or how much of this can we implement before Damien goes completely insane?</sub>
-				</section>
-				<section>
-					<div class="columns">
-						<div class="column">
-							<div class="ttyplayer box p0">
-						<div class="bar">
-							<div class="barbutton red"></div>
-							<div class="barbutton yellow"></div>
-							<div class="barbutton green"></div>
-						</div>
-						<div ref="terminal" class="screen">
-							<ttyplayer x-tty-recording="./assets/demo.ttyrec"/>
-						</div>    
-					</div>
-						</div>
-						<div class="column">
-							Second column
-						</div>
-					</div>
-					
+					<h1>Let's check !</h1>
 				</section>
 			</div>
 		</div>
