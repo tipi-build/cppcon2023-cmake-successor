@@ -18,7 +18,10 @@
 			<div class="slides">
 				<section data-background="dist/assets/first-slide.png"></section>
 				<section>Defining safety in software</section>
-				<section>Comparing build-systems</section>
+				<section>
+					<h1 class="r-fit-text">Comparing</h1>
+					<h1 class="r-fit-text">build-systems</h1>
+				</section>
 				<section>
 					<section data-auto-animate>
 						<h2>Parallelism</h2>
@@ -67,6 +70,78 @@
 							You can define separate job-pools each of which with a different size (eg: link=1 and cc=16)
 						</p>
 					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Job pools can be used when compiling...
+
+							<pre><code data-trim data-noescape data-line-numbers="1-2,6-7">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=16)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							... and linking ...
+
+							<pre><code data-trim data-noescape data-line-numbers="1,3,9-10">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=16)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							... and pretty much anywhere else 😁
+
+							<pre><code data-trim data-noescape data-line-numbers="1,4,12-15">
+set_property(GLOBAL PROPERTY JOB_POOLS 
+			compile=16 
+			link=1 
+			codegen=4)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_COMPILE compile)
+
+set_property(TARGET atarget 
+			PROPERTY JOB_POOL_LINK link)
+
+add_custom_target(protocgen 
+			COMMAND protoc --cpp_out=./out server.proto
+			JOB_POOL codegen
+			SOURCES server.proto)
+							</code></pre>
+						</p>
+					</section>
 				</section>
 				<section>
 					<section data-auto-animate>
@@ -103,6 +178,26 @@
 							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
 							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
 						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							By using Make or Ninja we get some level of file-system caching for "free"
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							However, we can replace the standard CMake client with tipi. 
+							This enables remote caching out of the box 
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<img src="dist/assets/tipi-comprehensive-packs.png">
 					</section>
 				</section>
 				<section>
@@ -151,7 +246,7 @@
 					<section data-auto-animate>
 						<h2>Distributed/remote builds</h2>
 						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
-						<sub>* also the thing that pays for my salary :)</sub>
+						<sub>* also known as the thing that pays my salary :)</sub>
 					</section>
 					<section data-auto-animate>
 						<h2>Distributed builds</h2>
@@ -161,7 +256,7 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>Reproducibility</h2>
+						<h2>Distributed builds</h2>
 						<h3>Level 2 - Gradle</h3>
 						<p>
 							Has support for remote caching, but no remote execution of build targets. Once again the low level of 
@@ -169,7 +264,7 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>Reproducibility</h2>
+						<h2>Distributed builds</h2>
 						<h3>Level 3 - FASTBuild</h3>
 						<p>
 							Supports both distributed execution and caching, however it is limited to just a list of well-known 
@@ -177,13 +272,46 @@
 						</p>
 					</section>
 					<section data-auto-animate>
-						<h2>Reproducibility</h2>
+						<h2>Distributed builds</h2>
 						<h3>Level 4 - Bazel</h3>
 						<p>
 							Supports both distributed builds and caching for arbitrary tools, including compilers, linkers, tests
 							and whatever you can think of
 						</p>
 					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>How a build system handles 3rd-party code</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
+						<p>
+							No support at all, the developer gets to decide how to handle dependencies
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 2 - Gradle</h3>
+						<p>
+							Dependency management focuses on handling jars but is very crude everywhere else
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 3 - Meson, Bazel</h3>
+						<p>
+							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
+							languages and both provide centralised repositories of dependencies tweaked to 
+							better work with the respective build systems
+						</p>
+					</section>
+				</section>
+				<section>
+					<h1>Demo time!</h1>
+					<sub>Or how much of this can we implement before Damien goes completely insane?</sub>
 				</section>
 			</div>
 		</div>
