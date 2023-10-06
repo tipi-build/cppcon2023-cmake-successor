@@ -44,6 +44,37 @@
 				
 				<section>
 					<section>
+						<h1 class="r-fit-text">A love ❤️ letter to CMake</h1>
+					</section>
+
+					<section>
+						<h2 class="">Thank you CMake 🙏🏼</h2>
+						<p>autotools, qmake and SCons almost disappeared 🎯</p>
+					</section>
+
+					<section>
+						<img src="assets/RequirementsSuccessorLanguagesBretBrownCppNow2023.png" alt="Requirements for C++ Successor Languages - Bret Brown - CppNow 2023">
+					</section>
+					<section>
+						<h1 class="r-fit-text">Requirements for C++ Successor Languages</h1>
+						<div class="columns">
+							<div class="is-two-third">
+								<ul class="bulletpoints">
+									<li>Iterative migration</li>
+									<li><b>CMake</b> compatibility</li>	
+								</ul>
+							</div>
+						</div>
+					</section>
+				
+
+					<section>
+						<h2 class="">CMake is about the <span style="font-style: italic;">timelessness</span> of your builds.</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
 						<h1 class="r-fit-text">Defining safety in software</h1>
 					</section>
 					<section>
@@ -436,41 +467,7 @@
 
 
 				
-				<section>
-					<section>
-						<img src="assets/RequirementsSuccessorLanguagesBretBrownCppNow2023.png" alt="Requirements for C++ Successor Languages - Bret Brown - CppNow 2023">
-					</section>
-					<section>
-						<h1 class="r-fit-text">Requirements for C++ Successor Languages</h1>
-						<div class="columns">
-							<div class="is-two-third">
-								<ul class="bulletpoints">
-									<li>Iterative migration</li>
-									<li>CMake compatibility</li>	
-								</ul>
-							</div>
-						</div>
-					</section>
-				</section>
-				
-				<section>
-					<section>
-						<h1 class="r-fit-text">A love ❤️ letter to CMake</h1>
-					</section>
 
-					<section>
-						<h2 class="">Thank you CMake 🙏🏼</h2>
-						<p>autotools, qmake and SCons almost disappeared 🎯</p>
-					</section>
-
-					<section>
-						<h2 class="">"CMake is a crappy C" - <span style="font-style: italic;">Bill Hoffman</span></h2>
-					</section>
-
-					<section>
-						<h2 class="">CMake is about the <span style="font-style: italic;">timelessness</span> of your builds.</h2>
-					</section>
-				</section>
 
 				<section>
 					<h1 class="r-fit-text">Comparing</h1>
@@ -598,63 +595,15 @@ add_custom_target(protocgen
 						</p>
 					</section>
 				</section>
-				<section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>How many targets can a build system avoid rebuilding?</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 1 - Gradle</h3>
-						<p>
-							Once again the low level of granularity means that even small changes will rebuild very large targets
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 2 - Make, Ninja</h3>
-						<p>
-							Check timestamps on the individual input files and rebuild targets if any change. Caching is completely 
-							file-system based and uses the mtime of a file to detect if it has changed since the last build
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 3 - FASTBuild</h3>
-						<p>
-							Supports the same type of file-system caching as the previous level and adds support for distributed 
-							caching
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 4 - Bazel</h3>
-						<p>
-							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
-							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
-						</p>
-					</section>
+				
 
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							By using Make or Ninja we get file-system caching out-of-the-box
-						</p>
-					</section>
 
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							However, we can replace the standard CMake client with tipi. Engflow and Tipi
-							partnered to bring remote execution and caching to CMake!
-						</p>
-					</section>
 
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<img src="dist/assets/cmake-re-remote-caching.png" style="max-height: 50vh;">
-					</section>
-				</section>
+
+
+
+
+
 				<section>
 					<section data-auto-animate>
 						<h2>Reproducibility</h2>
@@ -971,6 +920,142 @@ endforeach()
 					</section>
 				</section>
 				
+				<section>
+					<section data-auto-animate>
+						<h2>Caching</h2>
+						<h3>How many targets can a build system avoid rebuilding?</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Caching</h2>
+						<h3>Level 1 - Gradle</h3>
+						<p>
+							Once again the low level of granularity means that even small changes will rebuild very large targets
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Caching</h2>
+						<h3>Level 2 - Make, Ninja</h3>
+						<p>
+							Check timestamps on the individual input files and rebuild targets if any change. Caching is completely 
+							file-system based and uses the mtime of a file to detect if it has changed since the last build
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Caching</h2>
+						<h3>Level 3 - FASTBuild</h3>
+						<p>
+							Supports the same type of file-system caching as the previous level and adds support for distributed 
+							caching
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Caching</h2>
+						<h3>Level 4 - Bazel</h3>
+						<p>
+							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
+							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							By using Make or Ninja we get file-system caching out-of-the-box
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							However, we can replace the standard CMake client with tipi. Engflow and Tipi
+							partnered to bring remote execution and caching to CMake!
+						</p>
+					</section>
+
+
+
+
+					<section ref="sc-38" class="hero  is-fullheight is-fullheight-with-navbar ">
+					<div class="hero-body">
+						<div class="content has-text-centered">
+							<h1 class="big_title">L1 Cache - Reproducible incremental builds</h1>
+			
+							<div class="container ">
+								<div class="columns is-centered has-text-centered">
+			
+									<div class="column is-10-widescreen">
+										<img src="assets/cache/03-incremental-versioned.png" />
+									</div>
+								</div>
+			
+								<div class="columns is-centered has-text-justified my-6">
+			
+									<div class="column is-half is-one-third-desktop">
+										<div class="content is-normal ">
+											<p></p>
+										</div>
+									</div>
+								</div>
+			
+							</div>
+						</div>
+					</div>
+				</section>
+			
+			 <section ref="sc-39" class="hero  is-fullheight is-fullheight-with-navbar ">
+					<div class="hero-body">
+						<div class="content has-text-centered">
+							<h1 class="big_title">L1 Cache - Comprehensive packs</h1>
+			
+							<div class="container ">
+								<div class="columns is-centered has-text-centered">
+			
+									<div class="column is-10-widescreen">
+										<img src="assets/cache/04-comprehensive-packs.png" />
+									</div>
+								</div>
+			
+								<div class="columns is-centered has-text-justified my-6">
+			
+									<div class="column is-half is-one-third-desktop">
+										<div class="content is-normal ">
+											<p></p>
+										</div>
+									</div>
+								</div>
+			
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<h2>L2 Cache</h2>
+					<img src="dist/assets/cmake-re-remote-caching.png" style="max-height: 50vh;">
+				</section>
+
+				<section>
+					<h1 class="r-fit-text">Rationale</h1>
+					<div class="columns">
+						<div class="is-two-third">
+							<ul class="bulletpoints">
+								<li>L1 cache
+									<ul class="bulletpoints">
+										<li> permits fast build / install tree clean restore</li>
+									</ul>
+								</li> <br>
+								<li>L2 cache 
+									<ul class="bulletpoints">
+										<li> less cores required for parallel CI jobs</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				</section>
+
 
 
 
@@ -978,7 +1063,7 @@ endforeach()
 
 				<section>
 					<section data-auto-animate>
-						<h2>Dependency management</h2>
+						<h2>Dependency management &amp; Software Supply Chain Safety</h2>
 						<h3>How a build system handles 3rd-party code</h3>
 					</section>
 					<section data-auto-animate>
@@ -1006,27 +1091,156 @@ endforeach()
 					</section>
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
-						<p>
-							Yes! CMake offers both `ExternalProject_Add` and `FetchContent` that can be used to manage dependencies
+					</section>
+
+						<section>
+							<h1 class="r-fit-text"> Software Supply Chain </h1>
+							<h2 >But the package management in C++ is 🙉 </h2>
+				
+						</section>
+						<section>
+							<h1 class="r-fit-text"> Actually we have one </h1>
+							<h2 >But the package management in C++ is 🙉 </h2>
+							<ul class="bulletpoints">
+								<li>CMake is the de-facto standard for C++ builds</li>
+								<li>It has FetchContent and we love it ❤️</li>
+							</ul>
+						</section>
+				
+						<section data-auto-animate>
+							<h2>FetchContent</h2>
+							<p>
+						<pre><code class="language-cmake" data-trim data-noescape>
+							Include(FetchContent)
+							FetchContent_Declare(
+									Boost
+									GIT_REPOSITORY https://github.com/boostorg/boost.git
+									GIT_TAG        boost-1.80.0
+							)
+							FetchContent_MakeAvailable(Boost)
+							find_package(boost_filesystem CONFIG REQUIRED)
+							
+							target_link_libraries(app Boost::filesystem)
+						</code></pre>
 						</p>
 					</section>
+				
+					<section>
+						<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
+						<h2 >🕠 </h2>
+						<ul class="bulletpoints">
+						</ul>
+					</section>
+				
+					<section>
+						<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
+						<h2 >🕠 </h2>
+						<ul class="bulletpoints">
+							<li>⚡ No problem : we can optimize it </li>
+							<li>Let's use CMake <b>SET_DEPENDENCY_PROVIDER</b></li>
+						</ul>
+					</section>
+				
+					<section>
+						<h1 class="r-fit-text">Intercept FetchContent calls</h1>
+						<h2 > </h2>
+				
+						<pre><code class="language-cmake" data-trim data-noescape>
+						macro(tipi_provide_dependency method package_name)
+							set(oneValueArgs
+								GIT_REPOSITORY
+								GIT_TAG
+							)
+					
+							cmake_parse_arguments(
+								ARG "${options}" "${oneValueArgs}"
+								"${multiValueArgs}" ${ARGN} )
+				
+							# Do something with ${ARG_GIT_REPOSITORY} 
+				
+							FetchContent_SetPopulated( ${package_name} )
+						endmacro()
+				
+						</code></pre>
+				
+					</section>
+				
+					<section>
+						<h1 class="r-fit-text">Install dependency provider</h1>
+						<h2 > </h2>
+						dependency_provider.cmake
+					<pre><code class="language-cmake" data-trim data-noescape>
+						cmake_language(
+							SET_DEPENDENCY_PROVIDER tipi_provide_dependency
+							SUPPORTED_METHODS 
+								FETCHCONTENT_MAKEAVAILABLE_SERIAL
+						)	
+						</code></pre>
+						
+						<pre><code class="language-cmake" data-trim data-noescape>
+						list (APPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
+							 dependency_provider.cmake)
+						</code></pre>
+					</section>
+				
+
 					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
+						<h2>Let's install Boost</h2>
 						<p>
-							There are also OSS tools to generate SBOMs: https://github.com/DEMCON/cmake-sbom
-						</p>
+					<pre><code class="language-cmake" data-trim data-noescape>
+						Include(FetchContent)
+						FetchContent_Declare(
+								Boost
+								GIT_REPOSITORY https://github.com/boostorg/boost.git
+								GIT_TAG        boost-1.80.0
+						)
+						FetchContent_MakeAvailable(Boost)
+					</code></pre>
+					</p>
 					</section>
+				
+					<section>
+						<h1 class="r-fit-text"> Advantages</h1>
+				
+						<ul class="bulletpoints">
+							<li>No lock-in, pure CMake</li>
+							<li>Rebuild from sources if needed</li>
+							<li>Efficient and secure build caching</li>
+						</ul>
+					</section>
+					
+					<section>
+						<div class="hero-body">
+							<div >
+								<p class="title">
+									Automatic CMake Packages Caching
+								</p>
+								<p class="subtitle">
+									<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
+								</p>
+								<p class="content is-large ">
+									<br>
+									<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
+								</p>
+							</div>
+						</div>
+						</section>
+
 				</section>
 
 				<section>
+						<section>
+						<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
+						<h2 > SBOMs </h2>
+					</section>				
+
 					<section>
-						<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
-						<h2 >Let's focus </h2>
+						<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
+						<h2 > SBOMs </h2>
 						<ul class="bulletpoints">
 							<li>Software Supply Chain Safety</li>
-						</ul>
-			
-			
+							<li>NTIA Compliance</li>
+						</ul>	
 					</section>
 			
 					<section>
@@ -1044,115 +1258,41 @@ endforeach()
 					</section>
 			
 					<section data-auto-animate>
-						<h2>FetchContent</h2>
+						<h2>SBOMs generation</h2>
 						<p>
 					<pre><code class="language-cmake" data-trim data-noescape>
-						Include(FetchContent)
-						FetchContent_Declare(
-								Boost
-								GIT_REPOSITORY https://github.com/boostorg/boost.git
-								GIT_TAG        boost-1.80.0
+						include(sbom)
+
+						sbom_generate(
+							OUTPUT
+								${CMAKE_INSTALL_PREFIX}/sbom-${GIT_VERSION_PATH}.spdx
+							LICENSE MIT
+							SUPPLIER tipi
+							SUPPLIER_URL https://tipi.build
 						)
-						FetchContent_MakeAvailable(Boost)
-						find_package(boost_filesystem CONFIG REQUIRED)
 						
-						target_link_libraries(app Boost::filesystem)
+						reuse_spdx()	
+
+						add_executable(app app.cpp)
+
+		      	install(
+		      			TARGETS app
+		      			EXPORT "${targets_export_name}"
+		      			RUNTIME DESTINATION "bin"
+		      	)
+		      	sbom_add(TARGET app)
+
+						sbom_finalize()
 					</code></pre>
 					</p>
 				</section>
 			
-				<section>
-					<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
-					<h2 >🕠 </h2>
-					<ul class="bulletpoints">
-					</ul>
-				</section>
-			
-				<section>
-					<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
-					<h2 >🕠 </h2>
-					<ul class="bulletpoints">
-						<li>⚡ No problem : we can optimize it </li>
-						<li>Let's use CMake <b>SET_DEPENDENCY_PROVIDER</b></li>
-					</ul>
-				</section>
-			
-				<section>
-					<h1 class="r-fit-text">Intercept FetchContent calls</h1>
-					<h2 > </h2>
-			
-					<pre><code class="language-cmake" data-trim data-noescape>
-					macro(tipi_provide_dependency method package_name)
-						set(oneValueArgs
-							GIT_REPOSITORY
-							GIT_TAG
-						)
-				
-						cmake_parse_arguments(
-							ARG "${options}" "${oneValueArgs}"
-							"${multiValueArgs}" ${ARGN} )
-			
-						# Do something with ${ARG_GIT_REPOSITORY} 
-			
-						FetchContent_SetPopulated( ${package_name} )
-					endmacro()
-			
-					</code></pre>
-			
-				</section>
-			
-				<section>
-					<h1 class="r-fit-text">Install dependency provider</h1>
-					<h2 > </h2>
-					dependency_provider.cmake
-				<pre><code class="language-cmake" data-trim data-noescape>
-					cmake_language(
-						SET_DEPENDENCY_PROVIDER tipi_provide_dependency
-						SUPPORTED_METHODS 
-							FETCHCONTENT_MAKEAVAILABLE_SERIAL
-					)	
-					</code></pre>
-					
-					<pre><code class="language-cmake" data-trim data-noescape>
-					list (APPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
-						 dependency_provider.cmake)
-					</code></pre>
-				</section>
-			
-				<section>
-					<img src="assets/cmake-tipi-provider.png" alt="CMake tipi.build provider">
-				</section>
-			
-				<section data-auto-animate>
-					<h2>Let's install Boost</h2>
-					<p>
-				<pre><code class="language-cmake" data-trim data-noescape>
-					Include(FetchContent)
-					FetchContent_Declare(
-							Boost
-							GIT_REPOSITORY https://github.com/boostorg/boost.git
-							GIT_TAG        boost-1.80.0
-					)
-					FetchContent_MakeAvailable(Boost)
-				</code></pre>
-				</p>
-				</section>
-			
-				<section>
-					<h1 class="r-fit-text"> Advantages</h1>
-			
-					<ul class="bulletpoints">
-						<li>No lock-in, pure CMake</li>
-						<li>Rebuild from sources if needed</li>
-						<li>Efficient and secure build caching</li>
-					</ul>
-				</section>
 			
 			</section>
 
 
 
-
+				
 				<section>
 					<section data-auto-animate>
 						<h2>Distributed/remote builds</h2>
@@ -1203,7 +1343,11 @@ endforeach()
 					</section>
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
-						<img src="dist/assets/cmake-re-remote-execution.png" style="max-height: 50vh;">
+						<img src="assets/cmake-re-remote-execution.png" style="max-height: 50vh;">
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<img src="assets/distributed-build-scaling.png" style="max-height: 50vh;">
 					</section>
 				</section>
 				<section>
@@ -1229,16 +1373,6 @@ endforeach()
 						</div>
 					</div>
 					
-				</section>
-
-				<section>
-					<h1>Give it a try</h1>
-					<sub>Request access to the <span class="tag is-large is-success is-rounded">BETA</span>
-						<br />
-						 <a href="https://tipi.build/cmake-re">https://tipi.build/cmake-re</a>
-					</sub>
-
-					<img src="assets/cluster-cloud.svg" width="60%" alt="tipi x EngFlow CMake RE" />
 				</section>
 			</div>
 		</div>
