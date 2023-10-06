@@ -12,18 +12,34 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/solarized-light.css">
+		
+		<!-- ttyplayer stylesheet -->
+		<link rel="stylesheet" href="plugin/ttyplayer/ttyplayer.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section data-background="dist/assets/first-slide.png"></section>
-				<section>Defining safety in software</section>
+				<section>Defining safety in software 
+					
+					<div class="ttyplayer box p0">
+						<div class="bar">
+						  <div class="barbutton red"></div>
+						  <div class="barbutton yellow"></div>
+						  <div class="barbutton green"></div>
+						</div>
+						<div ref="terminal" class="screen">
+							<ttyplayer x-tty-recording="./assets/demo.ttyrec"/>
+						</div>    
+					  </div>
+				</section>
 				<section>
 					<h1 class="r-fit-text">Comparing</h1>
 					<h1 class="r-fit-text">build-systems</h1>
 				</section>
 				<section>
 					<section data-auto-animate>
+						
 						<h2>Parallelism</h2>
 						<h3>How many indipendent targets can a build system run concurrently at most?</h3>
 					</section>
@@ -320,6 +336,7 @@ add_custom_target(protocgen
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/ttyplayer/ttyplayer.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -327,8 +344,20 @@ add_custom_target(protocgen
 			Reveal.initialize({
 				hash: true,
 
+				ttyplayer: {
+					disableStdin: true,
+					speed: 1,
+					scrollback: 0,
+					theme: {
+						background: '#ffffff',
+						foreground: '#393A34'
+					},
+					cols: 80,
+					rows: 30
+				},
+
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealTtyPlayer ]
 			});
 		</script>
 	</body>
