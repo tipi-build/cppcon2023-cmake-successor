@@ -183,7 +183,7 @@ add_custom_target(protocgen
 					<section data-auto-animate>
 						<h2>Will it CMake?</h2>
 						<p>
-							By using Make or Ninja we get some level of file-system caching for "free"
+							By using Make or Ninja we get file-system caching out-of-the-box
 						</p>
 					</section>
 
@@ -191,7 +191,7 @@ add_custom_target(protocgen
 						<h2>Will it CMake?</h2>
 						<p>
 							However, we can replace the standard CMake client with tipi. 
-							This enables remote caching out of the box 
+							This makes it possible to also use remote caching!
 						</p>
 					</section>
 
@@ -345,7 +345,7 @@ endforeach()
 						<p>
 							Problem 4: __FILE__ macro
 						</p><p>
-							Tipi ensures that the project is always built in the same path
+							Tipi relocates your code under a common path that is the same for all users
 						</p>
 					</section>
 					<section data-auto-animate>
