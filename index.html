@@ -368,6 +368,47 @@ endforeach()
 				</section>
 				<section>
 					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>How a build system handles 3rd-party code</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
+						<p>
+							No support at all, the developer gets to decide how to handle dependencies
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 2 - Gradle</h3>
+						<p>
+							Dependency management focuses on handling jars but is very crude everywhere else
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Dependency management</h2>
+						<h3>Level 3 - Meson, Bazel</h3>
+						<p>
+							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
+							languages and both provide centralised repositories of dependencies tweaked to 
+							better work with the respective build systems
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							Yes! CMake offers both `ExternalProject_Add` and `FetchContent` that can be used to manage dependencies
+						</p>
+					</section>
+					<section data-auto-animate>
+						<h2>Will it CMake?</h2>
+						<p>
+							There are also OSS tools to generate SBOMs: https://github.com/DEMCON/cmake-sbom
+						</p>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
 						<h2>Distributed/remote builds</h2>
 						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
 					</section>
@@ -405,35 +446,6 @@ endforeach()
 						<p>
 							Supports both distributed builds and caching for arbitrary tools, including compilers, linkers, tests
 							and whatever you can think of
-						</p>
-					</section>
-				</section>
-				<section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>How a build system handles 3rd-party code</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
-						<p>
-							No support at all, the developer gets to decide how to handle dependencies
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 2 - Gradle</h3>
-						<p>
-							Dependency management focuses on handling jars but is very crude everywhere else
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 3 - Meson, Bazel</h3>
-						<p>
-							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
-							languages and both provide centralised repositories of dependencies tweaked to 
-							better work with the respective build systems
 						</p>
 					</section>
 				</section>
