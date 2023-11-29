@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>CMake Successor Build Systems: A World Tour of Build Systems Towards Better C++ Builds</title>
+		<title>Towards Safer Builds</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -20,46 +20,69 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-background="dist/assets/first-slide.png"></section>
+
+			<section>
+					<h1 class="r-fit-text">Toward Safer Builds</h1>
+					<h2 class="r-fit-text">Native Code Safety + Software Supply Chain Safety</h2>
+					<img src="./assets/tipi.build%20logo.svg" style="width:300px;">
+				</section>
 
 				<section>
-					<h1 class="r-fit-text">Reliable, Fast and Safe Builds</h1>
-					<img src="./assets/tipi-engflow.jpg">
+					<img src="./assets/tipi.build%20logo.svg" style="width:400px;">
 					<div class="columns">
 						<div class="column" style="font-size:0.5em;">
 							<img src="./assets/damien.jpg" style="height: 13vh;">
 							<p>Damien</p>
-							<p>co-founder, tipi.build</p>
-							<p>@daminetreg / damien@tipi.build</p>
+							<p>co-founder, CEO</p>
 						</div>
+
 						<div class="column" style="font-size:0.5em;">
-							<img src="./assets/antonio.jpg"  style="height: 13vh;">
-							<p>Antonio</p>
-							<p>DevEx Engineer, EngFlow</p>
-							<p>@TheGrizzlyDev / antonio@engflow.com</p>
+							<img src="./assets/team/yannicstaudt.jpg" style="height: 13vh;">
+							<p>Yannic</p>
+							<p>co-founder, COO</p>
 						</div>
+
+						<div class="column" style="font-size:0.5em;">
+							<img src="./assets/team/luclambour.jpg" style="height: 13vh;">
+							<p>Luc</p>
+							<p>Developer</p>
+						</div>
+						
+						<div class="column" style="font-size:0.5em;">
+							<img src="./assets/team/valentinaricupero.jpg" style="height: 13vh;">
+							<p>Valentina</p>
+							<p>CCO</p>
+						</div>
+
+						<div class="column" style="font-size:0.5em;">
+							<br/>
+							<p>Even more great minds to meet on the tipi.build community !</p>
+						</div>
+						<!--<div class="column" style="font-size:0.5em;">
+							<img src="./assets/team/rolandbrand.jpg" style="height: 13vh;">
+							<p>Roland</p>
+							<p>Developer</p>
+						</div>-->
+
 					</div>
 				</section>
 
-				
+			<section>
+					<img src="./assets/tipi-engflow.jpg" >
+			<div class="columns">
+				<div class="column" style="font-size:0.5em;">
+					<img src="./assets/team/helen.jpg" style="height: 13vh;">
+					<p>Helen Altschuler</p>
+					<p>Former engineer Lead at Google, CTO at PeerIQ and Director of Engineering at J.P. Morgan</p>
+				</div>
 
-				<section>
-					<section>
-						<h1 class="r-fit-text">A love ❤️ letter to CMake</h1>
-					</section>
-					<section>
-						<h1 class="r-fit-text">Giving CMake Superpowers 🚀</h1>
-					</section>
-
-
-
-					<section>
-						<h2 class="">Thank you CMake 🙏🏼</h2>
-						<p>autotools, qmake and SCons almost disappeared 🎯</p>
-					</section>
-
-					
-				</section>
+				<div class="column" style="font-size:0.5em;">
+					<img src="./assets/team/ulf.jpg" style="height: 13vh;">
+					<p>Ulf Adams</p>
+					<p>Bazel development and open-sourcing leader, Ulf was in charge of Bazel and Blaze, Google’s internal equivalent, for 11 years.</p>
+				</div>
+			</div>
+		</section>
 
 				<section>
 					<section>
@@ -201,9 +224,6 @@
 	<section>
 		<section>
 			<h1 class="r-fit-text"> Achieve safety in C++ today </h1>
-		</section>
-		<section>
-			<h1 class="r-fit-text"> Achieve safety in C++ today </h1>
 			<h2 >with the CppCoreGuidelines </h2>
 			<img src="assets/cpp_core_guidelines.png" />
 		</section>
@@ -223,10 +243,13 @@
 
 	</section>
 
+	</section>
+	
+
 	<section>
 		<section>
 			<h1 class="r-fit-text"> Achieving safety in C++ today </h1>
-			<h2 >with CMake </h2>
+			<h2 >with Sanitizers</h2>
 
 		</section>
 
@@ -372,934 +395,581 @@
 			</div>
 			</div>
 		</section>
-	
-			<section  ref="sc-20" class="hero my-6   is-fullheight is-fullheight-with-navbar ">
-			<div class="hero-body has-text-centered">
-			<div class="container is-fluid "> 
-				<div class="content has-text-centered">
-					<h1 class="title"> That requires a decent amount of CPU power </h1>
-					<p class="subtitle  my-2">Let's look at other build systems</p>
-				</div>        
-			</div>
-			</div>
+		 
+		<section data-auto-animate>
+			<h3>Problems : Running Sanitizers</h3>
+			<ul>
+				<li>Requires cross-platform environments</li>
+				<li>Adds at least 2 builds per target</li>
+				<li>Requires running tests </li>
+			</ul>
 		</section>
 
 
+		<section data-auto-animate>
+			<h3>CMake RE</h3>
+			<ul>
+				<li>Remote Execution for CMake</li>
+				<li>On-demand resources
+					<ul style="font-size: 0.7em;">
+						<li>Defined by CMake Toolchainfile + Packerfile </li>
+						<li>Cloud autoscaling</li>
+					</ul>
+				<li><b>Open Protocol:</b>	 Bazel RE-API for CMake</li>
+			</ul>
+			<img src="assets/cluster-cloud.svg" width="50%" style="margin-top: -;   " alt="tipi x EngFlow CMake RE" />
+		</section>
+
+		<section data-auto-animate>
+				<h2>Remote Builds & Tests</h2>
+				<img src="assets/cmake-re-remote-execution.png" style="max-height: 50vh;">
+		</section>
+		<section data-auto-animate>
+				<h2>Remote Builds & Tests</h2>
+				<img src="assets/distributed-build-scaling.png" style="max-height: 50vh;">
+		</section>
+
+		
+
+
+
+
 	</section>
-	   
-
-
-				
-
-
-				<section>
-					<h1 class="r-fit-text">Learning from other</h1>
-					<h1 class="r-fit-text">build-systems</h1>
-				</section>
-				<section>
-					<section data-auto-animate>
-						
-						<h2>Parallelism</h2>
-						<h3>How many independent targets can a build system run concurrently at most?</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Parallelism</h2>
-						<h3>Level 1 - Gradle</h3>
-						<pre>
-.
-├── app
-│   ...
-│   └── build.gradle
-├── lib
-│   ...
-│   └── build.gradle
-└── settings.gradle
-						</pre>
-					</section>
-					<section data-auto-animate>
-						<h2>Parallelism</h2>
-						<h3>Level 1 - Gradle</h3>
-						<p>
-							Sub-project level parallelism. It is very limited as projects have very low granularity
-							and are limited in numbers. It is disabled by default
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Parallelism</h2>
-						<h3>Level 2 - Make, FASTBuild</h3>
-						<p>
-							Targets are more granular and the size of the job pool can be specified by a flag (-j/--jobs)
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Parallelism</h2>
-						<h3>Level 3 - Bazel</h3>
-						<p>
-							Same as the level before, but resource-intensive targets can reduce the level of parallelism on-demand 
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Parallelism</h2>
-						<h3>Level 4 - Ninja</h3>
-						<p>
-							You can define separate job-pools each of which with a different size (eg: link=1 and cc=16)
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Job pools can be used when compiling...
-
-							<pre><code data-trim data-noescape data-line-numbers="1-2,6-7">
-set_property(GLOBAL PROPERTY JOB_POOLS 
-			compile=16 
-			link=1 
-			codegen=16)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_COMPILE compile)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_LINK link)
-
-add_custom_target(protocgen 
-			COMMAND protoc --cpp_out=./out server.proto
-			JOB_POOL codegen
-			SOURCES server.proto)
-							</code></pre>
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							... and linking ...
-
-							<pre><code data-trim data-noescape data-line-numbers="1,3,9-10">
-set_property(GLOBAL PROPERTY JOB_POOLS 
-			compile=16 
-			link=1 
-			codegen=16)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_COMPILE compile)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_LINK link)
-
-add_custom_target(protocgen 
-			COMMAND protoc --cpp_out=./out server.proto
-			JOB_POOL codegen
-			SOURCES server.proto)
-							</code></pre>
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							... and pretty much anywhere else 😁
-
-							<pre><code data-trim data-noescape data-line-numbers="1,4,12-15">
-set_property(GLOBAL PROPERTY JOB_POOLS 
-			compile=16 
-			link=1 
-			codegen=4)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_COMPILE compile)
-
-set_property(TARGET atarget 
-			PROPERTY JOB_POOL_LINK link)
-
-add_custom_target(protocgen 
-			COMMAND protoc --cpp_out=./out server.proto
-			JOB_POOL codegen
-			SOURCES server.proto)
-							</code></pre>
-						</p>
-					</section>
-				</section>
-				
 
 
 
 
 
-
-
-
-				<section>
-					<section data-auto-animate>
-						<h2>Reproducibility</h2>
-						<h3>Given the same inputs and configuration, a target should yield identical outputs</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Reproducibility</h2>
-						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
-						<p>
-							Provide no real facility to ensure reproducibility and, thus, hermeticity is something
-							that the developers have to take care of
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Reproducibility</h2>
-						<h3>Level 2 - Meson</h3>
-						<p>
-							Allows you to query and introspect tools during a build and configure them to get 
-							reproducibile results as well as define toolchains
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Reproducibility</h2>
-						<h3>Level 3 - Gradle</h3>
-						<p>
-							Predefines robust and easy to configure toolchains out of the box. This way builds do not normally rely
-							on any system-wide installed tools/libraries that can change between different workstations
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Reproducibility</h2>
-						<h3>Level 4 - Bazel</h3>
-						<p>
-							Toolchains are treated as normal inputs. This trivially allows defining custom toolchains 
-							whilst keeping the same level of reproducibility
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Actually, yes! But we have a few problems to fix 😎
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 1: file ordering matters
-						</p><p>
-							Building `a.cpp` and `b.cpp` can yield different results from building
-							`b.cpp` and `a.cpp`!
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 1: file ordering matters
-						</p><p>
-							Luckily CMake forces you to write input sources manually, so ordering is guaranteed! 
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 2: __DATE__ and __TIME__ macros
-						</p><p>
-							<!--Because these macros change with each and every compilation they will always 
-							invalidate a large portion of the build-->
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 2: __DATE__ and __TIME__ macros
-						</p>
-						<p>MSVC</p>
-						<pre>
-							<code>
+	<section>
+		<section data-auto-animate>
+			<h3>Software Supply Chain Safety : <b>Reproducibility</b></h3>
+		</section>
+		<section data-auto-animate>
+			<h3>Reproducibility : Many problems</h3>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 0: Build Hermeticity</h3>
+			<p>
+			</p>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 0: Build Hermeticity</h3>
+			<ul>
+				<li>Well defined CMake toolchain files</li>
+				<li>Isolated virtual build environments</li>
+			</ul>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 1: file ordering matters</h3>
+			<p>
+				Building `a.cpp` and `b.cpp` can yield different results from building
+				`b.cpp` and `a.cpp`!
+			</p>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 1: file ordering matters</h3>
+			<p>
+				CMake sorts sources provided, so ordering is guaranteed! 
+			</p>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 2: __DATE__ + __TIME__</h3>
+			<p>
+				<!--Because these macros change with each and every compilation they will always 
+				invalidate a large portion of the build-->
+			</p>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 2: __DATE__ + __TIME__</h3>
+			<p>MSVC</p>
+			<pre>
+				<code>
 add_link_options("/Brepro")
-							</code>
-						</pre>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 2: __DATE__ and __TIME__ macros
-						</p>
-						<p>GCC (via an environment variable)</p>
-						<pre>
-							<code>
+				</code>
+			</pre>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 2: __DATE__ + __TIME__</h3>
+			<p>GCC (via an environment variable)</p>
+			<pre>
+				<code>
 SOURCE_DATE_EPOCH=1621012303
-							</code>
-						</pre>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 2: __DATE__ and __TIME__ macros
-						</p>
-						<p>GCC + Clang </p>
-						<pre><code class="language-cmake">
+				</code>
+			</pre>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 2: __DATE__ + __TIME__</h3>
+			<p>GCC + Clang </p>
+			<pre><code class="language-cmake">
 # Rewrite __DATE__
 add_definitions(-D__DATE__="May  14 2021")
 add_definitions(-D__TIME__="17:11:43")
 add_compile_options(-Wno-builtin-macro-redefined)
-							</code></pre>
-					</section>
-					
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 3: Randomness when using `-flto` with GCC
-						</p><p>
-							LTO on GCC will produce random symbols
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 3: Randomness when using `-flto` with GCC
-						</p><pre><code>
-set(APP_SOURCES
-	app.cpp
-	lib.cpp)
-foreach(_file ${APP_SOURCES})
-	file(SHA1 ${_file} sha1sum)
-	string(SUBSTRING ${sha1sum} 0 8 sha1sum)
-	set_property(SOURCE ${_file} 
-		APPEND_STRING PROPERTY 
-		COMPILE_FLAGS 
-		"-frandom-seed=0x${sha1sum}")
-endforeach()
-						</code></pre>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							Problem 4: __FILE__ macro
-						</p><p>
-							The __FILE__ macro is very likely to change between different workstations and thus produce
-							different results 
-						</p>
-					</section>
-
-
-						<section  ref="sc-27" class="hero is-fullheight is-fullheight-with-navbar ">
-						<div class="hero-body">
-							<div >
-								<p class="title">
-									__FILE__ macro and path prefix
-								</p>
-								<p class="subtitle">
-								</p>
-								<p class="content is-large ">
-									<ul class="bulletpoints">
-										<li>Just build in the same environment</li>
-										<li>At the same path</li>
-										<li>But how ?</li>
-									</ul>
-								</p>
-							</div>
-						</div>
-						</section>
-					
-					 <section  ref="sc-29" class="hero is-fullheight is-fullheight-with-navbar ">
-							<div class="hero-body">
-								<div >
-									<p class="title">
-									 Let's merge Git and Ninja !
-									</p>
-									<p class="subtitle">
-										Because we can use Git : 
-									</p>
-									<p class="content is-large ">
-										<ul class="bulletpoints">
-											<li>Content Addressable Filesystem ✅ </li>
-											<li>to clone sources and build trees in invariant paths ✅ </li>
-											<li>to <b>track changes</b> ✅</li>
-										</ul>
-									</p>
-								</div>
-							</div>
-						</section>
-
-						<section  ref="sc-35" class="hero  is-fullheight is-fullheight-with-navbar ">
-							<div class="hero-body">
-								<div class="content has-text-centered">
-									<h1 class="big_title">Stores code in an invariant path</h1>
-					
-									<div class="container ">
-										<div class="columns is-centered has-text-centered">
-					
-											<div class="column is-10-widescreen">
-												<img src="assets/cache/00-code.png" />
-											</div>
-										</div>
-					
-										<div class="columns is-centered has-text-justified my-6">
-					
-											<div class="column is-half is-one-third-desktop">
-												<div class="content is-normal ">
-													<p></p>
-												</div>
-											</div>
-										</div>
-					
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<section  ref="sc-36" class="hero  is-fullheight is-fullheight-with-navbar ">
-							<div class="hero-body">
-								<div class="content has-text-centered">
-									<h1 class="big_title">git based sources mirroring</h1>
-					
-									<div class="container ">
-										<div class="columns is-centered has-text-centered">
-					
-											<div class="column is-10-widescreen">
-												<img src="assets/cache/01-mirroring.png"  />
-											</div>
-										</div>
-					
-										<div class="columns is-centered has-text-justified my-6">
-					
-											<div class="column is-half is-one-third-desktop">
-												<div class="content is-normal ">
-													<p>Cache id based on the repository origin</p>
-												</div>
-											</div>
-										</div>
-					
-									</div>
-								</div>
-							</div>
-						</section>
-
-					 <section ref="sc-37"  class=" ">
-							<div class="hero-body">
-								<div class="content has-text-centered">
-									<h1 class="big_title">commit-id addressable builds</h1>
-					
-									<div class="container">
-										<div class="columns is-centered has-text-centered">
-					
-											<div class="column is-10-widescreen">
-												<img src="assets/cache/02-snapshots.png"/>
-											</div>
-										</div>
-					
-										<div class="columns is-centered has-text-justified my-6">
-					
-											<div class="column is-half is-one-third-desktop">
-												<div class="content is-normal ">
-													<p></p>
-												</div>
-											</div>
-										</div>
-					
-									</div>
-								</div>
-							</div>
-						</section>	
-	
-					
-
-						<section  ref="sc-34" class=" ">
-							<div class="hero-body has-text-centered">
-							<div class="container is-fluid "> 
-								<div class="content has-text-centered">
-									<h1 class="title">Git + Ninja + cache packs ✅</h1>
-									<br>
-									<p class="subtitle">__FILE__ problem solved 🫡
-									</p>
-								</div>        
-							</div>
-							</div>
-						</section>
-					
-				</section>
-				
-				<section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>How many targets can a build system avoid rebuilding?</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 1 - Gradle</h3>
-						<p>
-							Once again the low level of granularity means that even small changes will rebuild very large targets
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 2 - Make, Ninja</h3>
-						<p>
-							Check timestamps on the individual input files and rebuild targets if any change. Caching is completely 
-							file-system based and uses the mtime of a file to detect if it has changed since the last build
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 3 - FASTBuild</h3>
-						<p>
-							Supports the same type of file-system caching as the previous level and adds support for distributed 
-							caching
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Caching</h2>
-						<h3>Level 4 - Bazel</h3>
-						<p>
-							Supports file-system and distributed caching as with the previous level, but based on the digest of the input files' 
-							content rather than mtime. Bazel also has an in-memory cache for large build graphs 
-						</p>
-					</section>
-
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							By using Make or Ninja we get file-system caching out-of-the-box
-						</p>
-					</section>
-
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							However, we can replace the standard CMake client with tipi. Engflow and Tipi
-							partnered to bring remote execution and caching to CMake!
-						</p>
-					</section>
-
-
-
-
-					<section ref="sc-38" class="hero  is-fullheight is-fullheight-with-navbar ">
-					<div class="hero-body">
-						<div class="content has-text-centered">
-							<h1 class="big_title">L1 Cache </h1>
-			
-							<div class="container ">
-								<div class="columns is-centered has-text-centered">
-			
-									<div class="column is-10-widescreen">
-										<img src="assets/cache/03-incremental-versioned.png" />
-									</div>
-								</div>
-			
-								<div class="columns is-centered has-text-justified my-6">
-			
-									<div class="column is-half is-one-third-desktop">
-										<div class="content is-normal ">
-											<p></p>
-										</div>
-									</div>
-								</div>
-			
-							</div>
-						</div>
-					</div>
-				</section>
-			
-			 <section ref="sc-39" class="hero  is-fullheight is-fullheight-with-navbar ">
-					<div class="hero-body">
-						<div class="content has-text-centered">
-							<h1 class="big_title">L1 Cache </h1>
-			
-							<div class="container ">
-								<div class="columns is-centered has-text-centered">
-			
-									<div class="column is-10-widescreen">
-										<img src="assets/cache/04-comprehensive-packs.png" />
-									</div>
-								</div>
-			
-								<div class="columns is-centered has-text-justified my-6">
-			
-									<div class="column is-half is-one-third-desktop">
-										<div class="content is-normal ">
-											<p></p>
-										</div>
-									</div>
-								</div>
-			
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section data-auto-animate>
-					<h2>L2 Cache</h2>
-					<img src="dist/assets/cmake-re-remote-caching.png" style="max-height: 50vh;">
-				</section>
-
-				<section>
-					<h1 class="">Rationale</h1>
-					<div class="columns">
-						<div class="is-two-third">
-							<ul class="bulletpoints">
-								<li>L1 cache
-									<ul class="bulletpoints">
-										<li> permits fast build / install tree clean restore</li>
-									</ul>
-								</li> <br>
-								<li>L2 cache 
-									<ul class="bulletpoints">
-										<li> less cores required for parallel CI jobs</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</section>
-
-				</section>
-
-
-
-
-
-
-				<section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>How a build system handles 3rd-party code</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 1 - Make, Ninja, FASTBuild</h3>
-						<p>
-							No support at all, the developer gets to decide how to handle dependencies
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 2 - Gradle</h3>
-						<p>
-							Dependency management focuses on handling jars but is very crude everywhere else
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Dependency management</h2>
-						<h3>Level 3 - Meson, Bazel</h3>
-						<p>
-							Both provide somwhat extensible mechanisms to resolve dependencies for multiple 
-							languages and both provide centralised repositories of dependencies tweaked to 
-							better work with the respective build systems
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-					</section>
-
-						<section>
-							<h2 >But package management in C++ is 🙉 </h2>
-				
-						</section>
-						<section>
-							<h2 > Actually we have a good solution</h1>
-							<ul class="bulletpoints">
-								<li>CMake is the de-facto standard</li>
-								<li>It has FetchContent ❤️</li>
-							</ul>
-						</section>
-				
-						<section data-auto-animate>
-							<h2>FetchContent</h2>
-							<p>
-						<pre><code class="language-cmake" data-trim data-noescape>
-							Include(FetchContent)
-							FetchContent_Declare(
-									Boost
-									GIT_REPOSITORY https://github.com/boostorg/boost.git
-									GIT_TAG        boost-1.80.0
-							)
-							FetchContent_MakeAvailable(Boost)
-							find_package(boost_filesystem CONFIG REQUIRED)
-							
-							target_link_libraries(app Boost::filesystem)
-						</code></pre>
-						</p>
-					</section>
-				
-					<section>
-						<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
-						<h2 >🕠 </h2>
-						<ul class="bulletpoints">
-						</ul>
-					</section>
-				
-					<section>
-						<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
-						<h2 >🕠 </h2>
-						<ul class="bulletpoints">
-							<li>⚡ No problem : we can optimize it </li>
-							<li>Let's use CMake <b>SET_DEPENDENCY_PROVIDER</b></li>
-						</ul>
-					</section>
-				
-					<section>
-						<h1 class="r-fit-text">Intercept FetchContent calls</h1>
-						<h2 > </h2>
-				
-						<pre><code class="language-cmake" data-trim data-noescape>
-						macro(tipi_provide_dependency method package_name)
-							set(oneValueArgs
-								GIT_REPOSITORY
-								GIT_TAG
-							)
-					
-							cmake_parse_arguments(
-								ARG "${options}" "${oneValueArgs}"
-								"${multiValueArgs}" ${ARGN} )
-				
-							# Do something with ${ARG_GIT_REPOSITORY} 
-				
-							FetchContent_SetPopulated( ${package_name} )
-						endmacro()
-				
-						</code></pre>
-				
-					</section>
-				
-					<section>
-						<h1 class="r-fit-text">Install dependency provider</h1>
-						<h2 > </h2>
-						dependency_provider.cmake
-					<pre><code class="language-cmake" data-trim data-noescape>
-						cmake_language(
-							SET_DEPENDENCY_PROVIDER tipi_provide_dependency
-							SUPPORTED_METHODS 
-								FETCHCONTENT_MAKEAVAILABLE_SERIAL
-						)	
-						</code></pre>
-						
-						<pre><code class="language-cmake" data-trim data-noescape>
-						list (APPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
-							 dependency_provider.cmake)
-						</code></pre>
-					</section>
-				
-
-					<section data-auto-animate>
-						<h2>Let's install Boost</h2>
-						<p>
-					<pre><code class="language-cmake" data-trim data-noescape>
-						Include(FetchContent)
-						FetchContent_Declare(
-								Boost
-								GIT_REPOSITORY https://github.com/boostorg/boost.git
-								GIT_TAG        boost-1.80.0
-						)
-						FetchContent_MakeAvailable(Boost)
-					</code></pre>
-					</p>
-					</section>
-				
-					<section>
-						<h1 class="r-fit-text"> Advantages</h1>
-				
-						<ul class="bulletpoints">
-							<li>No lock-in, pure CMake</li>
-							<li>Rebuild from sources if needed</li>
-							<li>Efficient and secure build caching</li>
-						</ul>
-					</section>
-					
-					<section>
-						<div class="hero-body">
-							<div >
-								<p class="title">
-									Automatic CMake Packages Caching
-								</p>
-								<p class="subtitle">
-									<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
-								</p>
-								<p class="content is-large ">
-									<br>
-									<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
-								</p>
-							</div>
-						</div>
-						</section>
-
-				</section>
-
-				<section>
-					<section>
-						<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
-						<h2 > SBOMs </h2>
-					</section>				
-
-					<section>
-						<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
-						<h2 > SBOMs </h2>
-						<ul class="bulletpoints">
-							<li>Software Supply Chain Safety</li>
-							<li>SPDX Format</li>
-							<li>NTIA Compliance Validation</li>
-						</ul>	
-					</section>
-
-					<section>
-						<div class="hero-body">
-							<div >
-								<p class="title">
-									Manual Guided SBOM Generation
-								</p>
-								<p class="subtitle">
-									<a href="https://github.com/DEMCON/cmake-sbom">github.com/DEMCON/cmake-sbom</a>
-								</p>
-								<p class="content is-large ">
-									<br>
-									<img src="assets/cmake-sbom.png" style="max-height: 40vh;"	/>
-								</p>
-							</div>
-						</div>
-					</section>
-
-			
-					<section data-auto-animate>
-						<h2>SBOMs generation</h2>
-						<p>
-					<pre><code class="language-cmake" data-trim data-noescape>
-						include(sbom)
-
-						sbom_generate(
-							OUTPUT
-								${CMAKE_INSTALL_PREFIX}/sbom-${GIT_VERSION_PATH}.spdx
-							LICENSE MIT
-							SUPPLIER tipi
-							SUPPLIER_URL https://tipi.build
-						)
-						
-						reuse_spdx()	
-
-						add_executable(app app.cpp)
-
-		      	install(
-		      			TARGETS app
-		      			EXPORT "${targets_export_name}"
-		      			RUNTIME DESTINATION "bin"
-		      	)
-		      	sbom_add(TARGET app)
-
-						sbom_finalize()
-					</code></pre>
-					</p>
-				</section>
-
-
-
-				<section data-auto-animate>
-					<h2>Automated SBOMs generation</h2>
-					<p>
-				<pre><code class="language-cmake" data-trim data-noescape>
-					install(
-							TARGETS app
-							EXPORT "${targets_export_name}"
-							RUNTIME DESTINATION "bin"
-					)
-					sbom_add(TARGET app)
-
-					sbom_finalize()
 				</code></pre>
-				</p>
-			</section>
+		</section>
+		
+		<section data-auto-animate>
+			<h3>Problem 3: Randomness when using `-flto` with GCC</h3>
+			<p>
+				LTO on GCC will produce random symbols
+			</p>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 3: Randomness when using `-flto` with GCC</h3>
+			<pre><code>
+set(APP_SOURCES
+app.cpp
+lib.cpp)
+foreach(_file ${APP_SOURCES})
+file(SHA1 ${_file} sha1sum)
+string(SUBSTRING ${sha1sum} 0 8 sha1sum)
+set_property(SOURCE ${_file} 
+APPEND_STRING PROPERTY 
+COMPILE_FLAGS 
+"-frandom-seed=0x${sha1sum}")
+endforeach()
+			</code></pre>
+		</section>
+		<section data-auto-animate>
+			<h3>Problem 4: __FILE__ macro</h3>
+			<p>
+				The __FILE__ macro is very likely to change between different workstations and thus produce
+				different results 
+			</p>
+		</section>
 
-			<section>
+			<section  ref="sc-27" class="hero is-fullheight is-fullheight-with-navbar ">
+			<div class="hero-body">
+				<div >
+					<p class="title">
+						__FILE__ macro and path prefix
+					</p>
+					<p class="subtitle">
+					</p>
+					<p class="content is-large ">
+						<ul class="bulletpoints">
+							<li>Just build in the same environment</li>
+							<li>At the same path</li>
+							<li>But how ?</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+			</section>
+		
+		 <section  ref="sc-29" class="hero is-fullheight is-fullheight-with-navbar ">
 				<div class="hero-body">
 					<div >
 						<p class="title">
-							Automatic SBOM Generation for your dependencies
+						 Merge Git and CMake !
 						</p>
 						<p class="subtitle">
-							<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
+						&nbsp;
 						</p>
 						<p class="content is-large ">
-							<br>
-							<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
+							<ul class="bulletpoints">
+								<li>Content Addressable Filesystem ✅ </li>
+								<li>to clone sources and build trees in invariant paths ✅ </li>
+								<li>to <b>track changes</b> ✅</li>
+							</ul>
 						</p>
 					</div>
 				</div>
 			</section>
 
-			<section data-auto-animate>
-				<h2>Build Cache Registry</h2>
-				<h3></h3>
-				<p>
-					<a href="https://feature-registry.dev.tipi.build/packages/search/libgit" target="_blank">View SBOMs, Dependencies, Cached builds</a>
-				</p>
+			<section  ref="sc-35" class="hero  is-fullheight is-fullheight-with-navbar ">
+				<div class="hero-body">
+					<div class="content has-text-centered">
+						<h1 class="big_title">Storing code in an invariant path</h1>
+		
+						<div class="container ">
+							<div class="columns is-centered has-text-centered">
+		
+								<div class="column is-10-widescreen">
+									<img src="assets/cache/00-code.png" />
+								</div>
+							</div>
+		
+							<div class="columns is-centered has-text-justified my-6">
+		
+								<div class="column is-half is-one-third-desktop">
+									<div class="content is-normal ">
+										<p></p>
+									</div>
+								</div>
+							</div>
+		
+						</div>
+					</div>
+				</div>
 			</section>
 
+			<section  ref="sc-36" class="hero  is-fullheight is-fullheight-with-navbar ">
+				<div class="hero-body">
+					<div class="content has-text-centered">
+						<h1 class="big_title">Storing code in an invariant path</h1>
+		
+						<div class="container ">
+							<div class="columns is-centered has-text-centered">
+		
+								<div class="column is-10-widescreen">
+									<img src="assets/cache/01-mirroring.png"  />
+								</div>
+							</div>
+		
+							<div class="columns is-centered has-text-justified my-6">
+		
+								<div class="column is-half is-one-third-desktop">
+									<div class="content is-normal ">
+										<p>Cache id based on the repository origin</p>
+									</div>
+								</div>
+							</div>
+		
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section data-auto-animate>
+				<h3>Deep Git integration in every build</h3>
+				<p>
+					__FILE__ problem solved 🫡 ✅
+				</p>
+
+			</section>
+
+			<section data-auto-animate>
+				<h3>Measuring reproducibility</h3>
+				<p>
+					Let's take the <b>diffoscope</b> 🔬 to check this.
+				</p>
+
+			</section>
+		
+	</section>
+	
+	
+		
+
+	<section>
+		<section data-auto-animate>
+			<h3>Software Supply Chain Safety : <b>Traceability</b></h3>
+		</section>
+
+			<section>
+				<h2 >But package management in C++ is 🙉 </h2>
+	
+			</section>
+			<section>
+				<h2>Rely on solid foundations</h2>
+				<ul class="bulletpoints">
+					<li>CMake is emerging as the de-facto standard</li>
+					<li>It has FetchContent ❤️</li>
+				</ul>
+			</section>
+	
+			<section data-auto-animate>
+				<h2>FetchContent</h2>
+				<p>
+			<pre><code class="language-cmake" data-trim data-noescape>
+				Include(FetchContent)
+				FetchContent_Declare(
+						Boost
+						GIT_REPOSITORY https://github.com/boostorg/boost.git
+						GIT_TAG        boost-1.80.0
+				)
+				FetchContent_MakeAvailable(Boost)
+				find_package(boost_filesystem CONFIG REQUIRED)
+				
+				target_link_libraries(app Boost::filesystem)
+			</code></pre>
+			</p>
+		</section>
+	
+		<section>
+			<h1 class="r-fit-text"> FetchContent builds everything from source</h1>
+			<h2 >🕠 </h2>
+			<ul class="bulletpoints">
+			</ul>
+		</section>
+	
+		<section>
+			<h1 class="r-fit-text"> FetchContent is kinda slow</h1>
+			<h2 >🕠 </h2>
+			<ul class="bulletpoints">
+				<li>Udpating software fast is critical for security</li>
+				<li>We ⚡ optimized it</li>
+			</ul>
+		</section>
+	
+		<section>
+			<h1 class="r-fit-text">Intercepting FetchContent calls</h1>
+			<h2 > </h2>
+	
+			<pre><code class="language-cmake" data-trim data-noescape>
+			macro(tipi_provide_dependency method package_name)
+				set(oneValueArgs
+					GIT_REPOSITORY
+					GIT_TAG
+				)
+		
+				cmake_parse_arguments(
+					ARG "${options}" "${oneValueArgs}"
+					"${multiValueArgs}" ${ARGN} )
+	
+				# Do something with ${ARG_GIT_REPOSITORY} 
+	
+				FetchContent_SetPopulated( ${package_name} )
+			endmacro()
+	
+			</code></pre>
+	
+		</section>
+	
+		<section>
+			<h1 class="r-fit-text">Intercepting FetchContent calls</h1>
+			<h2 > </h2>
+			dependency_provider.cmake
+		<pre><code class="language-cmake" data-trim data-noescape>
+			cmake_language(
+				SET_DEPENDENCY_PROVIDER tipi_provide_dependency
+				SUPPORTED_METHODS 
+					FETCHCONTENT_MAKEAVAILABLE_SERIAL
+			)	
+			</code></pre>
 			
+			<pre><code class="language-cmake" data-trim data-noescape>
+			list (APPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
+					dependency_provider.cmake)
+			</code></pre>
+		</section>
+	
+
+		<section>
+			<div class="hero-body">
+				<div >
+					<p class="title">
+						Intercepts and Tracks all dependencies built with CMake
+					</p>
+					<p class="subtitle">
+						<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
+					</p>
+					<p class="content is-large ">
+						<br>
+						<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
+					</p>
+				</div>
+			</div>
 		</section>
 
 
 
-				
-				<section>
-					<section data-auto-animate>
-						<h2>Distributed/remote builds</h2>
-						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
-					</section>
-					<section data-auto-animate>
-						<h2>Distributed/remote builds</h2>
-						<h3>The ability of a build system to cache and/or run targets on a shared distributed system</h3>
-						<sub>* also known as the thing that pays my salary :)</sub>
-					</section>
-					<section data-auto-animate>
-						<h2>Distributed builds</h2>
-						<h3>Level 1 - Make, Ninja, Meson</h3>
-						<p>
-							No distributed caching or execution out of the box, everything runs locally
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Distributed builds</h2>
-						<h3>Level 2 - Gradle</h3>
-						<p>
-							Has support for remote caching, but no remote execution of build targets. Once again the low level of 
-							granularity negatively impacts the potential of this feature
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Distributed builds</h2>
-						<h3>Level 3 - FASTBuild</h3>
-						<p>
-							Supports both distributed execution and caching, however it is limited to just a list of well-known 
-							compilers when it comes to remote execution
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Distributed builds</h2>
-						<h3>Level 4 - Bazel</h3>
-						<p>
-							Supports both distributed builds and caching for arbitrary tools, including compilers, linkers, tests
-							and whatever you can think of
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<p>
-							100%! We can combine Engflow's Remote Execution, which uses the same RE level protocol Bazel adopts,
-							and tipi's single instance approach.
-						</p>
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<img src="assets/cmake-re-remote-execution.png" style="max-height: 50vh;">
-					</section>
-					<section data-auto-animate>
-						<h2>Will it CMake?</h2>
-						<img src="assets/distributed-build-scaling.png" style="max-height: 50vh;">
-					</section>
-				</section>
-				<section>
-					<h1>Let's check !</h1>
-				</section>
-				<section>
-					<h1>Thank you !</h1>
-					<sub>Request access to the <span class="tag is-large is-success is-rounded">BETA</span>
-						<br />
-						 <a href="https://tipi.build/cmake-re" target="_blank">https://tipi.build/cmake-re</a>
-						<br />
-						 <a href="https://engflow.com/cmake-re" target="_blank">https://engflow.com/cmake-re</a>
-					</sub>
-					
-					<img src="assets/cluster-cloud.svg" width="50%" style="margin-top: -;	" alt="tipi x EngFlow CMake RE" />
-				</section>
+		<section ref="sc-37"  class=" ">
+			<div class="hero-body">
+				<div class="content has-text-centered">
+					<h1 class="big_title">source addressable builds</h1>
+		
+					<div class="container">
+						<div class="columns is-centered has-text-centered">
+		
+							<div class="column is-10-widescreen">
+								<img src="assets/cache/02-snapshots.png"/>
+							</div>
+						</div>
+		
+						<div class="columns is-centered has-text-justified my-6">
+		
+							<div class="column is-half is-one-third-desktop">
+								<div class="content is-normal ">
+									<p></p>
+								</div>
+							</div>
+						</div>
+		
+					</div>
+				</div>
 			</div>
+		</section>
+
+		<section ref="sc-37"  class=" ">
+			<div class="hero-body">
+				<div class="content has-text-centered">
+					<h1 class="big_title">verifiable builds packs</h1>
+		
+					<div class="container">
+						<div class="columns is-centered has-text-centered">
+		
+							<div class="column is-10-widescreen">
+								<img src="assets/cache/04-comprehensive-packs.png"/>
+							</div>
+						</div>
+		
+						<div class="columns is-centered has-text-justified my-6">
+		
+							<div class="column is-half is-one-third-desktop">
+								<div class="content is-normal ">
+									<p></p>
+								</div>
+							</div>
+						</div>
+		
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<h1 class="r-fit-text">Build Cache Packs</h1>
+			<ul class="bulletpoints">
+				<li>Opensource : <a href="https://github.com/tipi-build/elfshaker" target="_blank">tipi-build/elfshaker</a></li>
+				<li>Stores and deduplicates binary trees</li>
+				<li>Tracks build snapshots by commit</li>
+				<li>Determines build object provenance by content</li>
+			</ul>
+		</section>
+
+
+
+	</section>
+
+
+
+	<section>
+		<section>
+			<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
+			<h2 > SBOMs </h2>
+		</section>				
+
+		<section>
+			<h1 class="r-fit-text"> Build Provenance &amp; Traceability</h1>
+			<h2 > SBOMs </h2>
+			<ul class="bulletpoints">
+				<li>Software Supply Chain Safety</li>
+				<li>SPDX Format</li>
+				<li>NTIA Compliance Validation</li>
+			</ul>	
+		</section>
+
+		<!--<section>
+			<div class="hero-body">
+				<div >
+					<p class="title">
+						Manual SBOM Generation
+					</p>
+					<p class="subtitle">
+						<a href="https://github.com/DEMCON/cmake-sbom">github.com/DEMCON/cmake-sbom</a>
+					</p>
+					<p class="content is-large ">
+						<br>
+						<img src="assets/cmake-sbom.png" style="max-height: 40vh;"	/>
+					</p>
+				</div>
+			</div>
+		</section>-->
+
+
+		<section data-auto-animate>
+			<h2>SBOMs generation</h2>
+			<p>
+		<pre><code class="language-cmake" data-trim data-noescape>
+			include(sbom)
+
+			sbom_generate(
+				OUTPUT
+					${CMAKE_INSTALL_PREFIX}/sbom-${GIT_VERSION_PATH}.spdx
+				LICENSE MIT
+				SUPPLIER tipi
+				SUPPLIER_URL https://tipi.build
+			)
+			
+			reuse_spdx()	
+
+			add_executable(app app.cpp)
+
+			install(
+					TARGETS app
+					EXPORT "${targets_export_name}"
+					RUNTIME DESTINATION "bin"
+			)
+			sbom_add(TARGET app)
+
+			sbom_finalize()
+		</code></pre>
+		</p>
+	</section>
+
+
+
+	<section data-auto-animate>
+		<h2>SBOMs generation</h2>
+		<p>
+	<pre><code class="language-cmake" data-trim data-noescape>
+		install(
+				TARGETS app
+				EXPORT "${targets_export_name}"
+				RUNTIME DESTINATION "bin"
+		)
+		sbom_add(TARGET app)
+
+		sbom_finalize()
+	</code></pre>
+	</p>
+</section>
+
+<section>
+	<div class="hero-body">
+		<div >
+			<p class="title">
+				Automatic SBOM Generation for your dependencies
+			</p>
+			<p class="subtitle">
+				<a href="https://github.com/tipi-build/cmake-tipi-provider">github.com/tipi-build/cmake-tipi-provider</a>
+			</p>
+			<p class="content is-large ">
+				<br>
+				<img src="assets/cmake-tipi-provider.png" style="max-height: 40vh;"	/>
+			</p>
 		</div>
+	</div>
+
+
+</section>
+
+
+
+<section data-auto-animate>
+	<h2>Build Cache Registry</h2>
+	<h3></h3>
+	<p>
+		<a href="https://feature-registry.dev.tipi.build/packages/search/libgit" target="_blank">View SBOMs, Dependencies, Cached builds</a>
+	</p>
+</section>
+
+</section>
+
+
+
+
+	<!--<section data-auto-animate>
+		<h3>Deep Git integration in every build</h3>
+		<p > <img src="assets/cpp-on-sea-merging-git-and-the-compiler.png" style="width:30vw;">
+			<br>Learn more at : <a href="https://youtu.be/2u-VuOBOCTI" target="_blank">https://youtu.be/2u-VuOBOCTI</a>
+		</p>
+	</section>-->
+
+
+		<section>
+			<h1>Thank you !</h1>
+			<sub>Request access to the <span class="tag is-large is-success is-rounded">BETA</span>
+			        <br />
+			         <a href="https://tipi.build/cmake-re" target="_blank">https://tipi.build/cmake-re</a>
+			        <br />
+			</sub>
+			
+			<img src="assets/cluster-cloud.svg" width="50%" style="margin-top: -;   " alt="tipi x EngFlow CMake RE" />
+		</section>
 
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
